@@ -216,6 +216,15 @@ details.mas .in{padding:4px 0 28px}
 .bigp .bh h4{margin:0 0 3px;font-size:16px;font-weight:600}
 .bigp .bh small{font-family:var(--mono);font-size:12px;color:var(--ink4)}
 .bigp .bb{padding:16px}
+.pcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin-top:12px}
+.pcard{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;border-top:3px solid var(--pc,#2563EB);display:flex;flex-direction:column}
+.pcard .ph{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px 8px 14px;background:#F9FAFB;border-bottom:1px solid var(--line)}
+.pcard .ph span{font:600 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.pcard .ph .btn{min-height:28px;padding:3px 10px;font-size:12px}
+.pcard pre{margin:0;padding:12px 14px;font:12.5px/1.6 var(--mono);color:var(--ink2);white-space:pre-wrap;overflow-wrap:anywhere}
+.pcard.c-0{--pc:#2563EB}.pcard.c-1{--pc:#0E9F6E}.pcard.c-2{--pc:#D97706}.pcard.c-3{--pc:#7C3AED}.pcard.c-4{--pc:#DC2626}.pcard.c-5{--pc:#0891B2}
+.pcard:nth-child(n){grid-column:auto}
+@media(min-width:760px){.pcard.w{grid-column:1/-1}}
 .pre{white-space:pre-wrap;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink2);background:#F9FAFB;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:10px 0 0;overflow-wrap:anywhere}
 .seg2{display:grid;gap:8px}
 .seg2 .s{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;background:#fff}
@@ -602,6 +611,15 @@ function pintarHerramienta(def) {
   }
 }
 function sec(nombre) { try { return eval(nombre); } catch (e) { return []; } }
+function partesPrompt(txt) {
+  const L = txt.split('\n'), out = []; let cur = null;
+  L.forEach(l => {
+    const m = l.trim();
+    if (/^[A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ ()\/]{2,40}:?$/.test(m) && m.length < 40) { cur = { t: m.replace(/:$/, ''), k: out.length, l: [] }; out.push(cur); }
+    else { if (!cur) { cur = { t: 'Prompt', k: 0, l: [] }; out.push(cur); } cur.l.push(l); }
+  });
+  return out.map((b, i) => ({ t: b.t.charAt(0) + b.t.slice(1).toLowerCase(), k: i % 6, i: i, c: b.l.join('\n').trim() })).filter(b => b.c);
+}
 function nPal(s) { return s.trim().split(/\s+/).length; }
 function pintarSeccion(def) {
   const cont = $('#sec-' + def.id);
@@ -636,10 +654,16 @@ function pintarSeccion(def) {
   if (!e) { cont.appendChild(el('p', 'note', 'Este contenido se está preparando.')); return; }
   const big = el('div', 'bigp');
   big.innerHTML = '<div class="bh"><div><h4>' + esc(e.titulo) + '</h4><small>' + esc(a.nombre) + ' · ' + esc(e.donde) + ' · ' + nPal(e.prompt) + ' palabras</small></div><button class="btn solid cp" type="button">Copiar prompt</button></div>' +
-    '<div class="bb"><p style="margin:0;color:var(--ink3);font-size:15px"><b>Antes de usarlo:</b> ' + esc(e.antes) + '</p><pre class="pre">' + esc(e.prompt) + '</pre>' +
+    '<div class="bb"><p style="margin:0;color:var(--ink3);font-size:15px"><b>Antes de usarlo:</b> ' + esc(e.antes) + '</p><div class="pcards"></div>' +
     '<p class="lab">Para iterar, pega estos seguimientos</p><div class="seg2"></div>' +
     '<p class="lab">Antes de usar la respuesta, verifica</p><ul class="chk vf"></ul></div>';
   big.querySelector('.cp').addEventListener('click', () => copiar(e.prompt));
+  const pc = big.querySelector('.pcards');
+  partesPrompt(e.prompt).forEach(b => {
+    const c = el('div', 'pcard c-' + b.k + (b.i > 2 ? ' w' : ''), '<div class="ph"><span>' + esc(b.t) + '</span><button class="btn" type="button" aria-label="Copiar bloque ' + esc(b.t) + '">Copiar</button></div><pre>' + esc(b.c) + '</pre>');
+    c.querySelector('button').addEventListener('click', () => copiar(b.t === 'Prompt' ? b.c : b.t.toUpperCase() + '\n' + b.c));
+    pc.appendChild(c);
+  });
   const sg = big.querySelector('.seg2');
   e.seguimiento.forEach(x => {
     const r = el('div', 's', '<span>' + esc(x) + '</span><button class="btn" type="button">Copiar</button>');

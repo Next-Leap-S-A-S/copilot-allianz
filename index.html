@@ -224,6 +224,32 @@ details.mas .in{padding:4px 0 28px}
 .seg2{display:grid;gap:8px}
 .seg2 .s{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;background:#fff}
 
+.panel{display:none}.panel.on{display:block}
+.tabs button{flex:none;background:none;border:0;cursor:pointer;color:var(--ink3);font:500 14px var(--sans);padding:8px 12px;border-radius:6px;min-height:40px;display:inline-flex;align-items:center;white-space:nowrap}
+.tabs button:hover{background:#F2F4F7;color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.pr{border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:12px;overflow:hidden}
+.pr-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:#F9FAFB;border-bottom:1px solid var(--line)}
+.pr-h h3{margin:0;font-size:15px}
+.pr-b{padding:14px 16px;font-size:15px}
+.pr-b p{margin:0 0 9px}
+.pr-b p:last-child{margin:0}
+.pr-b .code{font-family:var(--mono);font-size:12px;color:var(--ink4)}
+.sub{margin:36px 0 0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sub h2{font-size:1.3rem}
+.sub .min{font-family:var(--mono);font-size:12px;color:var(--ink4)}
+.hab{display:grid;gap:10px;margin-top:16px}
+.hab .it{display:grid;grid-template-columns:34px 1fr;gap:12px;border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+.hab .it .n{font-family:var(--mono);font-size:13px;color:var(--ink4)}
+.hab .ej{margin:8px 0 0;font-family:var(--mono);font-size:12.5px;color:var(--ink2);background:#F9FAFB;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.cmp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+@media(max-width:760px){.cmp{grid-template-columns:1fr}}
+.cmp .c{border:1px solid var(--line);border-radius:12px;padding:15px 16px;font-size:14px;background:#fff}
+.cmp .c .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.cmp .mal .l{color:var(--err)}.cmp .bien .l{color:var(--ok)}
+.go{display:flex;flex-wrap:wrap;gap:8px}
+details.cortos{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:0 16px 16px;background:#fff}
+details.cortos>summary{cursor:pointer;font-weight:600;font-size:15px;padding:14px 0;min-height:44px;display:flex;align-items:center}
 /* Cierre */
 .cierre{background:var(--ink);color:#fff;border-radius:20px;padding:36px 40px;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;margin-top:32px}
 @media(max-width:640px){.cierre{padding:24px}}
@@ -288,6 +314,28 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
       <p class="lead">Seis retos con tu trabajo real. En cada uno sabes qu&#233; traes, qu&#233; haces, con qu&#233; resultado sales y c&#243;mo lo compruebas. Todo con la fuente oficial al lado.</p>
     </section>
 
+    <div class="panel on" id="p-licencia">
+    <section class="sec" id="licencia">
+      <div class="aviso">
+        <div>
+          <h2>Antes de empezar: tu licencia no incluye Copilot Cowork</h2>
+          <p>Cowork es el agente de Microsoft que ejecuta tareas largas por ti. En estos retos t&#250; pides y t&#250; revisas, paso a paso. Si lo ves en un video, no lo busques en tu Copilot.</p>
+        </div>
+        <a class="btn big" href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/16/copilot-cowork-is-now-generally-available/">Qu&#233; es Cowork, seg&#250;n Microsoft</a>
+      </div>
+      <details class="lic" open>
+        <summary>Copilot Chat, Copilot Pro y Microsoft 365 Copilot: &#191;cu&#225;l es la tuya?</summary>
+        <div class="licg" id="lic"></div>
+        <div class="grid2">
+          <div class="card"><h3>Qu&#233; significa para la clase</h3><ul id="implica" style="margin:10px 0 0;padding-left:18px;color:var(--ink2);font-size:15px"></ul></div>
+          <div class="card"><h3>Compru&#233;balo en 1 minuto</h3><ul class="chk" id="chkLic"></ul></div>
+        </div>
+        <p class="note">Esta comparaci&#243;n sale de la documentaci&#243;n y de gu&#237;as de terceros, y los nombres comerciales cambian. Confirma con tu &#225;rea de tecnolog&#237;a qu&#233; licencia y qu&#233; funciones tienes habilitadas.</p>
+      </details>
+    </section>
+    </div>
+
+    <div class="panel" id="p-retos">
     <section class="sec">
       <div class="card">
         <p class="eyebrow">C&#243;mo funciona cada reto</p>
@@ -331,24 +379,6 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
       </div>
     </section>
 
-    <section class="sec" id="licencia">
-      <div class="aviso">
-        <div>
-          <h2>Antes de empezar: tu licencia no incluye Copilot Cowork</h2>
-          <p>Cowork es el agente de Microsoft que ejecuta tareas largas por ti. En estos retos t&#250; pides y t&#250; revisas, paso a paso. Si lo ves en un video, no lo busques en tu Copilot.</p>
-        </div>
-        <a class="btn big" href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/16/copilot-cowork-is-now-generally-available/">Qu&#233; es Cowork, seg&#250;n Microsoft</a>
-      </div>
-      <details class="lic">
-        <summary>Copilot Chat, Copilot Pro y Microsoft 365 Copilot: &#191;cu&#225;l es la tuya?</summary>
-        <div class="licg" id="lic"></div>
-        <div class="grid2">
-          <div class="card"><h3>Qu&#233; significa para la clase</h3><ul id="implica" style="margin:10px 0 0;padding-left:18px;color:var(--ink2);font-size:15px"></ul></div>
-          <div class="card"><h3>Compru&#233;balo en 1 minuto</h3><ul class="chk" id="chkLic"></ul></div>
-        </div>
-        <p class="note">Esta comparaci&#243;n sale de la documentaci&#243;n y de gu&#237;as de terceros, y los nombres comerciales cambian. Confirma con tu &#225;rea de tecnolog&#237;a qu&#233; licencia y qu&#233; funciones tienes habilitadas.</p>
-      </details>
-    </section>
 
     <section class="sec" id="ruta">
       <h2>La ruta de 120 minutos</h2>
@@ -371,6 +401,14 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
       </div>
     </section>
     <p class="foot">Los datos de los retos se anonimizan siempre y lo que sale de Copilot es un borrador que revisa la persona responsable. Las funciones dependen de la licencia y de lo que el administrador de Allianz haya habilitado. Los enlaces llevan a la documentaci&#243;n de Microsoft, que cambia con frecuencia.</p>
+    </div>
+
+    <div class="panel" id="p-prompting"><section class="sec"></section></div>
+    <div class="panel" id="p-teams-chats"><section class="sec"></section></div>
+    <div class="panel" id="p-teams-reunion"><section class="sec"></section></div>
+    <div class="panel" id="p-facilitator"><section class="sec"></section></div>
+    <div class="panel" id="p-planner"><section class="sec"></section></div>
+    <div class="panel" id="p-onenote"><section class="sec"></section></div>
   </div>
 </main>
 
@@ -474,6 +512,78 @@ const COMPRUEBA = [
   "Escribes en Copilot Chat: \u00ab\u00bfQu\u00e9 correos recib\u00ed hoy de [nombre de un compa\u00f1ero]?\u00bb y responde con tus correos. Si dice que no puede, tu cuenta no lee datos de trabajo.",
   "En Word, Outlook y Teams ves el icono de Copilot.",
   "En el men\u00fa de Copilot no aparece Cowork. Es lo esperado."
+];
+
+const HERRAMIENTAS = [
+  {
+    grupo: "Teams", nombre: "Copilot en chats y canales", donde: "Panel de Copilot dentro del chat o del canal.",
+    hace: ["Resume los mensajes que no has le\u00eddo, mirando 30 d\u00edas atr\u00e1s si no le dices otro plazo.", "Resume un hilo de canal desde el bot\u00f3n al final del hilo. El hilo necesita al menos 1.000 caracteres.", "Responde preguntas sobre lo que se dijo en esa conversaci\u00f3n.", "Mejora un borrador con la opci\u00f3n Reescribir con Copilot del cuadro de mensaje."],
+    limites: ["No resume im\u00e1genes, componentes Loop ni archivos compartidos en el hilo."]
+  },
+  {
+    grupo: "Teams", nombre: "Copilot en la reuni\u00f3n", donde: "Panel de Copilot durante la reuni\u00f3n y pesta\u00f1a de resumen despu\u00e9s.",
+    hace: ["Te pone al d\u00eda si llegas tarde y responde preguntas durante la reuni\u00f3n. Lo que preguntas solo lo ves t\u00fa.", "Despu\u00e9s deja un resumen con puntos clave, decisiones y tareas en la pesta\u00f1a de resumen de la reuni\u00f3n."],
+    limites: ["Necesita la transcripci\u00f3n activada. Sin transcripci\u00f3n no hay resumen."]
+  },
+  {
+    grupo: "Teams", nombre: "Facilitator", donde: "Participante visible dentro de reuniones programadas.",
+    hace: ["Toma notas compartidas en vivo que todos pueden editar.", "Sigue la agenda y avisa cu\u00e1ndo toca el siguiente tema.", "Deja un resumen con decisiones y pendientes.", "Crea tareas que se sincronizan con Planner (en vista previa p\u00fablica seg\u00fan varias fuentes).", "Redacta un documento de Word con el contenido de la reuni\u00f3n (estado por confirmar)."],
+    limites: ["Solo funciona en reuniones programadas. No funciona en chats, reuniones instant\u00e1neas, llamadas ni reuniones de canal.", "El administrador debe permitir Copilot y Facilitator durante o despu\u00e9s de la reuni\u00f3n."]
+  },
+  {
+    grupo: "Planner", nombre: "Planner Agent", donde: "Dentro de Planner, tambi\u00e9n desde Teams. Antes se llamaba Copilot en Planner y Project Manager.",
+    hace: ["Crea tareas a partir de un objetivo: pesta\u00f1a Metas, Agregar meta y Generar tareas, con archivos de apoyo opcionales.", "Sugiere tareas, las ordena en cubos y las divide en subtareas.", "Genera un informe de estado en la pesta\u00f1a Informes cuando el plan tiene al menos 10 tareas."],
+    limites: ["Generar tareas desde metas pide un plan premium de Planner, adem\u00e1s de la licencia Copilot.", "No lee tus reuniones por s\u00ed solo. Los acuerdos llegan por Facilitator o los pasas t\u00fa desde Copilot Chat."]
+  },
+  {
+    grupo: "OneNote", nombre: "Copilot en OneNote", donde: "Icono de Copilot en la p\u00e1gina o clic derecho sobre el texto.",
+    hace: ["Resume una secci\u00f3n, una p\u00e1gina o un texto seleccionado.", "Crea una lista de tareas a partir de tus notas.", "Reescribe un texto y redacta un borrador de plan o de esquema.", "Responde preguntas sobre el cuaderno desde el panel de chat."],
+    limites: ["Pide licencia Copilot de trabajo. Est\u00e1 en Windows, Mac, iPad y web.", "No aparece si el equipo tiene Windows Information Protection activo."]
+  },
+  {
+    grupo: "OneNote", nombre: "Cuadernos de Copilot", donde: "Espacio aparte donde re\u00fanes fuentes sobre un tema.",
+    hace: ["Usa como fuentes tus reuniones de Teams, chats, archivos y p\u00e1ginas.", "Es el puente hacia la sesi\u00f3n 3, donde decidimos cu\u00e1ndo usar un cuaderno y cu\u00e1ndo un agente."],
+    limites: ["Necesita licencia de SharePoint o OneDrive para crear cuadernos."]
+  }
+];
+
+const TEAMS = [
+  { titulo: "Ponerte al d\u00eda en un chat", donde: "Panel de Copilot en el chat", prompt: "Resume lo que no he le\u00eddo en este chat desde el lunes. Dame las decisiones, las preguntas que me hicieron a m\u00ed y lo que tengo pendiente, en m\u00e1ximo 6 vi\u00f1etas." },
+  { titulo: "Buscar informaci\u00f3n en tus chats", donde: "Copilot Chat, pesta\u00f1a Trabajo", prompt: "Busca en mis chats y canales de Teams de las \u00faltimas dos semanas lo que se dijo sobre [tema]. Dame 5 vi\u00f1etas, con qui\u00e9n lo dijo y en qu\u00e9 chat, para que yo pueda abrirlo y confirmarlo." },
+  { titulo: "Redactar o traducir al ingl\u00e9s", donde: "Reescribir con Copilot o Copilot Chat", prompt: "Reescribe este mensaje en ingl\u00e9s para un colega de otra oficina. Tono profesional y cercano, m\u00e1ximo 80 palabras. Dame tambi\u00e9n una versi\u00f3n m\u00e1s corta: [pega tu mensaje]." },
+  { titulo: "Llegar tarde a la reuni\u00f3n", donde: "Panel de Copilot en la reuni\u00f3n", prompt: "Llegu\u00e9 20 minutos tarde. Res\u00fameme lo que se habl\u00f3 hasta ahora, las decisiones que ya se tomaron y lo que se est\u00e1 discutiendo en este momento, en m\u00e1ximo 6 vi\u00f1etas." },
+  { titulo: "Preguntar durante la reuni\u00f3n", donde: "Panel de Copilot en la reuni\u00f3n", prompt: "\u00bfQui\u00e9n qued\u00f3 de entregar qu\u00e9, y para cu\u00e1ndo? Dame solo lo que se dijo hasta ahora y no completes lo que falte." },
+  { titulo: "Decisiones y pendientes", donde: "Copilot en la reuni\u00f3n, despu\u00e9s", prompt: "Con la transcripci\u00f3n de esta reuni\u00f3n, lista las decisiones tomadas y los pendientes. Para cada pendiente indica responsable y fecha. Si no se dijo, escribe PENDIENTE y no lo inventes. Indica en qu\u00e9 parte de la reuni\u00f3n aparece cada uno." },
+  { titulo: "Acta con tu plantilla", donde: "Copilot en la reuni\u00f3n o Facilitator", prompt: "Redacta el acta de esta reuni\u00f3n con exactamente esta estructura: [pega aqu\u00ed los t\u00edtulos de tu plantilla]. Usa tono formal y marca con [VERIFICAR] lo que no est\u00e9 claro en la transcripci\u00f3n." }
+];
+
+const PLANNER = [
+  { titulo: "Meta para el Planner Agent", donde: "Planner, pesta\u00f1a Metas", prompt: "Meta: Dejar listo el cierre de la reuni\u00f3n semanal de siniestros complejos. Incluye una tarea por cada caso con ajustador responsable y fecha, y una tarea final para revisar los avances el viernes." },
+  { titulo: "Acuerdos a tareas desde Copilot Chat", donde: "Copilot Chat, luego pegas en Planner", prompt: "Convierte los acuerdos de esta reuni\u00f3n en una tabla con t\u00edtulo corto, responsable, fecha l\u00edmite, prioridad y cubo sugerido. Si falta el responsable o la fecha, escribe PENDIENTE." },
+  { titulo: "Informe de estado del plan", donde: "Planner, pesta\u00f1a Informes", prompt: "Genera un informe de estado de este plan para el comit\u00e9: qu\u00e9 avanz\u00f3, qu\u00e9 est\u00e1 atrasado, qu\u00e9 depende de otra persona y qu\u00e9 decisi\u00f3n necesitamos." },
+  { titulo: "Revisar un plan que ya existe", donde: "Planner Agent", prompt: "Revisa este plan y dime qu\u00e9 tareas no tienen responsable, cu\u00e1les tienen fecha vencida y cu\u00e1les dependen de otras. Prop\u00f3n qu\u00e9 mover primero y por qu\u00e9." }
+];
+
+const ONENOTE = [
+  { titulo: "Resumir y sacar acciones", donde: "OneNote, panel de Copilot", prompt: "Resume mis notas de esta p\u00e1gina. Lista los puntos de acci\u00f3n con responsable y fecha si aparecen." },
+  { titulo: "Lista de tareas desde la p\u00e1gina", donde: "OneNote, clic derecho", prompt: "Crea una lista de tareas con lo que qued\u00f3 pendiente en esta p\u00e1gina, ordenada por urgencia. No agregues nada que no est\u00e9 en las notas." },
+  { titulo: "Ordenar notas por tema", donde: "OneNote, panel de Copilot", prompt: "Ordena estas notas por tema. Dame un t\u00edtulo para cada tema, 3 vi\u00f1etas por tema y al final las preguntas que quedaron abiertas." },
+  { titulo: "Reescribir con claridad", donde: "OneNote, clic derecho", prompt: "Reescribe este texto con frases cortas y claras para que otra persona del equipo lo entienda sin haber estado en la reuni\u00f3n." }
+];
+
+const HABITOS = [
+  { n: "1", titulo: "Estructura", texto: "Usa Rol, Contexto e Instrucci\u00f3n. Agrega el formato que quieres (tabla, vi\u00f1etas, longitud) y los l\u00edmites (qu\u00e9 no debe hacer).", ejemplo: "Resume en 5 vi\u00f1etas con fecha. M\u00e1ximo 150 palabras. No prometas cobertura." },
+  { n: "2", titulo: "Itera", texto: "La primera respuesta es un borrador. Pide ajustes concretos en lugar de empezar de cero.", ejemplo: "Hazlo m\u00e1s corto, cambia el tono a formal y agrega una columna con la fecha." },
+  { n: "3", titulo: "Pide fuentes", texto: "Pide que cada afirmaci\u00f3n diga de d\u00f3nde sale: qu\u00e9 correo, qu\u00e9 minuto de la reuni\u00f3n, qu\u00e9 documento.", ejemplo: "Indica para cada decisi\u00f3n en qu\u00e9 parte de la transcripci\u00f3n aparece." },
+  { n: "4", titulo: "Valida", texto: "Contrasta con la fuente antes de usar o enviar. Copilot puede equivocarse con nombres, cifras y fechas.", ejemplo: "Marca con [VERIFICAR] lo que no puedas confirmar en el documento." }
+];
+
+const VALIDAR = [
+  "Los nombres de personas y \u00e1reas coinciden con la transcripci\u00f3n.",
+  "Las cifras y fechas est\u00e1n en la fuente, no las puso Copilot por su cuenta.",
+  "Cada decisi\u00f3n y cada compromiso aparece de verdad en la reuni\u00f3n.",
+  "No hay promesas, coberturas ni compromisos que nadie dijo.",
+  "Un responsable humano revis\u00f3 el borrador antes de enviarlo."
 ];
 
 const RUTA = [
@@ -10560,7 +10670,7 @@ function pintarUsuario() {
   $('#homeHola').textContent = 'Hola, ' + st.user.nombre.split(' ')[0];
 }
 function irHome() { pintarUsuario(); pintarSesiones(); vista('home'); location.hash = ''; }
-function irSesion1() { pintarUsuario(); SECCIONES.forEach(pintarSeccion); vista('s1'); location.hash = 'sesion-1'; }
+function irSesion1() { pintarUsuario(); SECCIONES.forEach(pintarHerramienta); vista('s1'); location.hash = 'sesion-1'; panel('licencia'); }
 
 /* Entrada */
 function iniciarGate() {
@@ -10637,12 +10747,12 @@ function pintarRetos() {
       '</div><div class="col2">' +
         '<div><p class="eyebrow">Haces</p><div class="pasos">' + r.pasos.map(p => '<div class="paso"><span class="n">' + esc(p.n) + '</span><div><p>' + esc(p.texto) + '</p>' + (p.donde ? '<span class="d">' + esc(p.donde) + '</span>' : '') + '</div></div>').join('') + '</div></div>' +
         marco +
-        '<div class="pbox"><div class="h"><p class="eyebrow">Prompt de arranque</p><button type="button" class="btn cp">Copiar</button></div><pre>' + esc(r.prompt) + '</pre>' + (r.sec.length ? '<small>Los prompts completos de tu \u00e1rea, en 4 versiones por necesidad, est\u00e1n abajo.</small>' : '') + '</div>' +
+        '<div class="pbox"><div class="h"><p class="eyebrow">Prompt de arranque</p><button type="button" class="btn cp">Copiar</button></div><pre>' + esc(r.prompt) + '</pre>' + '</div>' + (r.sec.length ? '<div class="go">' + r.sec.map(id => '<button type="button" class="btn" data-go="' + id + '">Prompts de tu \u00e1rea: ' + esc(SECCIONES.find(x => x.id === id).nombre) + ' &rarr;</button>').join('') + '</div>' : '') +
         '<div class="falla"><p class="eyebrow">Si no te funciona</p><p>' + esc(r.siFalla) + '</p></div>' +
         '<div><p class="eyebrow">Referencias</p><div class="refs">' + r.refs.map(f => '<a href="' + esc(f.url) + '"><span>' + esc(f.titulo) + '</span><span>' + esc(f.fuente) + '</span></a>').join('') + '</div></div>' +
         (r.n === '6' ? '<div><p class="eyebrow">Lo que Copilot ten\u00eda mal</p><textarea id="correcciones" aria-label="Lo que Copilot ten\u00eda mal" placeholder="Ejemplo: asign\u00f3 la tarea al responsable equivocado, invent\u00f3 una fecha, omiti\u00f3 una decisi\u00f3n." style="margin-top:8px"></textarea><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" id="imprimir">Imprimir o guardar en PDF</button><button class="btn" type="button" id="limpiar">Borrar mi avance</button></div></div>' : '') +
-      '</div></div>' +
-      r.sec.map(id => { const d = SECCIONES.find(x => x.id === id); return '<details class="mas"><summary>Prompts completos de tu \u00e1rea: ' + esc(d.titulo) + '</summary><div class="in" id="sec-' + id + '"></div></details>'; }).join('');
+      '</div></div>';
+    a.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => panel(b.dataset.go)));
     a.querySelector('.cp').addEventListener('click', () => copiar(r.prompt));
     checks(a.querySelector('[data-v]'), r.valida.map(v => v.texto), 'v-' + r.n + '-');
     box.appendChild(a);
@@ -10655,13 +10765,57 @@ function pintarRetos() {
 
 /* Prompts por \u00e1rea */
 const SECCIONES = [
-  { id: 'prompting', datos: 'SEC_PROMPTING', titulo: 's\u00faper prompt y validaci\u00f3n' },
-  { id: 'teams-chats', datos: 'SEC_TEAMS_CHATS', titulo: 'chats y canales de Teams' },
-  { id: 'teams-reunion', datos: 'SEC_TEAMS_REUNION', titulo: 'Copilot en la reuni\u00f3n' },
-  { id: 'facilitator', datos: 'SEC_FACILITATOR', titulo: 'Facilitator' },
-  { id: 'planner', datos: 'SEC_PLANNER', titulo: 'Planner Agent' },
-  { id: 'onenote', datos: 'SEC_ONENOTE', titulo: 'OneNote' }
+  { id: 'prompting', datos: 'SEC_PROMPTING', tab: 'Prompting', nombre: 'prompting avanzado', min: '20 min', herr: [], cortos: () => [],
+    intro: 'Ya conoces Rol, Contexto e Instrucci\u00f3n. Hoy les sumas iteraci\u00f3n, fuentes y validaci\u00f3n, con el marco de Microsoft.' },
+  { id: 'teams-chats', datos: 'SEC_TEAMS_CHATS', tab: 'Chats', nombre: 'chats y canales de Teams', min: '35 min con Reuni\u00f3n y Facilitator', herr: ['Copilot en chats y canales'], cortos: () => TEAMS.slice(0, 3),
+    intro: 'Ponerte al d\u00eda, buscar informaci\u00f3n y redactar o traducir sin salir de Teams.' },
+  { id: 'teams-reunion', datos: 'SEC_TEAMS_REUNION', tab: 'Reuni\u00f3n', nombre: 'Copilot en la reuni\u00f3n', min: '', herr: ['Copilot en la reuni\u00f3n'], cortos: () => TEAMS.slice(3, 6),
+    intro: 'Durante la reuni\u00f3n y despu\u00e9s, sobre la transcripci\u00f3n. Decisiones con evidencia y pendientes con responsable.' },
+  { id: 'facilitator', datos: 'SEC_FACILITATOR', tab: 'Facilitator', nombre: 'Facilitator', min: '', herr: ['Facilitator'], cortos: () => TEAMS.slice(6),
+    intro: 'La instrucci\u00f3n que le das a Facilitator al abrir una reuni\u00f3n programada: agenda, notas, tiempos y cierre.' },
+  { id: 'planner', datos: 'SEC_PLANNER', tab: 'Planner', nombre: 'Planner Agent', min: '15 min', herr: ['Planner Agent'], cortos: () => PLANNER,
+    intro: 'La meta que le escribes al Planner Agent para que genere el plan de tu \u00e1rea.' },
+  { id: 'onenote', datos: 'SEC_ONENOTE', tab: 'OneNote', nombre: 'OneNote', min: '10 min', herr: ['Copilot en OneNote', 'Cuadernos de Copilot'], cortos: () => ONENOTE,
+    intro: 'Ordenar notas desordenadas, sacar pendientes y dejar el cuaderno limpio.' }
 ];
+function promptSimple(t) {
+  const d = el('div', 'pr');
+  d.innerHTML = '<div class="pr-h"><h3>' + esc(t.titulo) + '</h3><button class="btn" type="button">Copiar</button></div><div class="pr-b"><p class="code">' + esc(t.donde || '') + '</p><p>' + esc(t.prompt) + '</p></div>';
+  d.querySelector('button').addEventListener('click', () => copiar(t.prompt));
+  return d;
+}
+function pintarHerramienta(def) {
+  const cont = $('#p-' + def.id + ' .sec');
+  cont.innerHTML = '';
+  cont.appendChild(el('p', 'eyebrow acc', '/' + esc(def.id) + (def.min ? ' \u00b7 ' + esc(def.min) : '')));
+  const h2 = el('h2', '', esc(def.tab === 'Prompting' ? 'Prompting avanzado y validaci\u00f3n' : def.nombre)); h2.style.marginTop = '8px'; cont.appendChild(h2);
+  cont.appendChild(el('p', 'lead', esc(def.intro)));
+  def.herr.forEach(n => {
+    const h = HERRAMIENTAS.find(x => x.nombre === n); if (!h) return;
+    cont.appendChild(el('div', 'pr', '<div class="pr-h"><h3>' + esc(h.nombre) + '</h3><span class="chip">' + esc(h.grupo) + '</span></div><div class="pr-b"><p class="code">' + esc(h.donde) + '</p><p><b>Qu\u00e9 hace</b></p><ul style="margin:0 0 10px;padding-left:18px">' + h.hace.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul><p style="font-size:14px;color:var(--ink3)"><b>Ojo:</b> ' + h.limites.map(esc).join(' ') + '</p></div>'));
+  });
+  if (def.id === 'prompting') {
+    cont.appendChild(el('div', 'sub', '<h2>Lo mismo, en el marco de Microsoft</h2>'));
+    cont.appendChild(el('p', 'note', 'Microsoft ense\u00f1a los prompts con cuatro elementos. Es el mismo RCI con dos agregados: la fuente y las expectativas.'));
+    cont.appendChild(el('div', 'marco', MARCO.map(m => '<div><b>' + esc(m.m) + '</b> <span class="mono" style="font-size:12px;color:var(--ink4)">(' + esc(m.rci) + ')</span><small>' + esc(m.ej) + '</small></div>').join('')));
+    cont.appendChild(el('div', 'sub', '<h2>Cuatro h\u00e1bitos</h2>'));
+    cont.appendChild(el('div', 'hab', HABITOS.map(h => '<div class="it"><span class="n">' + esc(h.n) + '</span><div><h3>' + esc(h.titulo) + '</h3><p style="margin:4px 0 0;color:var(--ink3);font-size:15px">' + esc(h.texto) + '</p><p class="ej">' + esc(h.ejemplo) + '</p></div></div>').join('')));
+    cont.appendChild(el('div', 'sub', '<h2>Mismo pedido, dos prompts</h2>'));
+    cont.appendChild(el('div', 'cmp', '<div class="c mal"><div class="l">Pedido suelto</div>Resume este hilo de correos sobre el siniestro.</div><div class="c bien"><div class="l">Pedido con estructura</div>Eres un analista senior de siniestros de seguros generales. El hilo tiene 40 correos de un siniestro por da\u00f1os a un establecimiento y el asegurado reclama demora. Resume en 5 vi\u00f1etas con fechas, lista los documentos que faltan y redacta un correo de m\u00e1ximo 150 palabras, con tono emp\u00e1tico y sin prometer cobertura. Marca los supuestos.</div>'));
+    cont.appendChild(el('div', 'sub', '<h2>Antes de usar la respuesta</h2>'));
+    const card = el('div', 'card'); card.style.marginTop = '12px'; const ul = el('ul', 'chk'); card.appendChild(ul); cont.appendChild(card);
+    checks(ul, VALIDAR, 'v');
+  }
+  cont.appendChild(el('div', 'sub', '<h2>Prompts de tu \u00e1rea</h2><span class="min">4 por necesidad \u00b7 elige tu \u00e1rea</span>'));
+  cont.appendChild(el('div', '', '')).id = 'sec-' + def.id;
+  pintarSeccion(def);
+  const cortos = def.cortos();
+  if (cortos.length) {
+    const d = el('details', 'cortos', '<summary>M\u00e1s prompts cortos para practicar</summary>');
+    cortos.forEach(x => d.appendChild(promptSimple(x)));
+    cont.appendChild(d);
+  }
+}
 function sec(nombre) { try { return eval(nombre); } catch (e) { return []; } }
 function nPal(s) { return s.trim().split(/\s+/).length; }
 function pintarSeccion(def) {
@@ -10673,7 +10827,7 @@ function pintarSeccion(def) {
   AREAS.forEach(x => {
     const b = el('button', '', '<i style="background:' + x.color + '"></i>' + esc(x.nombre));
     b.type = 'button'; b.setAttribute('aria-pressed', x.id === a.id ? 'true' : 'false');
-    b.addEventListener('click', () => { st.areaVista = x.id; save(); SECCIONES.forEach(pintarSeccion); });
+    b.addEventListener('click', () => { st.areaVista = x.id; save(); SECCIONES.forEach(d => { if ($('#sec-' + d.id)) pintarSeccion(d); }); });
     selb.appendChild(b);
   });
   cont.appendChild(selb);
@@ -10712,11 +10866,16 @@ function pintarSeccion(def) {
 }
 
 /* Sesi\u00f3n 1 */
+const PANELES = [['licencia', 'Licencia'], ['retos', 'Retos'], ['prompting', 'Prompting'], ['teams-chats', 'Chats'], ['teams-reunion', 'Reuni\u00f3n'], ['facilitator', 'Facilitator'], ['planner', 'Planner'], ['onenote', 'OneNote']];
+function panel(id) {
+  document.querySelectorAll('#s1 .panel').forEach(p => p.classList.toggle('on', p.id === 'p-' + id));
+  document.querySelectorAll('#navtabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.p === id ? 'true' : 'false'));
+  const h = $('#s1 .hero'); if (h) h.scrollIntoView();
+  window.scrollTo(0, 0);
+}
 function iniciarSesion1() {
   const nt = $('#navtabs');
-  [['licencia', 'Licencia'], ['caso', 'Caso'], ['ruta', 'Ruta']].concat(RETOS.map(r => ['reto-' + r.n, 'Reto ' + r.n])).forEach(t => {
-    const x = el('a', '', esc(t[1])); x.href = '#' + t[0]; nt.appendChild(x);
-  });
+  PANELES.forEach(p => { const x = el('button', '', esc(p[1])); x.type = 'button'; x.dataset.p = p[0]; x.setAttribute('role', 'tab'); x.addEventListener('click', () => panel(p[0])); nt.appendChild(x); });
   const rs = $('#ruta-seg');
   RUTA.forEach(s => rs.appendChild(el('div', 'seg', '<span class="a">' + s.n + '</span><span class="b">' + esc(s.titulo) + '</span><span class="c">' + s.min + ' min</span>')));
   rs.querySelectorAll('.seg').forEach((d, i) => { d.style.flex = RUTA[i].min + ' 1 0'; d.style.background = RUTA[i].bg; d.style.color = RUTA[i].fg; });

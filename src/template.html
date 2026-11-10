@@ -220,6 +220,32 @@ details.mas .in{padding:4px 0 28px}
 .seg2{display:grid;gap:8px}
 .seg2 .s{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px;background:#fff}
 
+.panel{display:none}.panel.on{display:block}
+.tabs button{flex:none;background:none;border:0;cursor:pointer;color:var(--ink3);font:500 14px var(--sans);padding:8px 12px;border-radius:6px;min-height:40px;display:inline-flex;align-items:center;white-space:nowrap}
+.tabs button:hover{background:#F2F4F7;color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+.pr{border:1px solid var(--line);border-radius:12px;background:#fff;margin-top:12px;overflow:hidden}
+.pr-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:#F9FAFB;border-bottom:1px solid var(--line)}
+.pr-h h3{margin:0;font-size:15px}
+.pr-b{padding:14px 16px;font-size:15px}
+.pr-b p{margin:0 0 9px}
+.pr-b p:last-child{margin:0}
+.pr-b .code{font-family:var(--mono);font-size:12px;color:var(--ink4)}
+.sub{margin:36px 0 0;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sub h2{font-size:1.3rem}
+.sub .min{font-family:var(--mono);font-size:12px;color:var(--ink4)}
+.hab{display:grid;gap:10px;margin-top:16px}
+.hab .it{display:grid;grid-template-columns:34px 1fr;gap:12px;border:1px solid var(--line);border-radius:12px;padding:16px;background:#fff}
+.hab .it .n{font-family:var(--mono);font-size:13px;color:var(--ink4)}
+.hab .ej{margin:8px 0 0;font-family:var(--mono);font-size:12.5px;color:var(--ink2);background:#F9FAFB;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+.cmp{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
+@media(max-width:760px){.cmp{grid-template-columns:1fr}}
+.cmp .c{border:1px solid var(--line);border-radius:12px;padding:15px 16px;font-size:14px;background:#fff}
+.cmp .c .l{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.cmp .mal .l{color:var(--err)}.cmp .bien .l{color:var(--ok)}
+.go{display:flex;flex-wrap:wrap;gap:8px}
+details.cortos{margin-top:28px;border:1px solid var(--line);border-radius:12px;padding:0 16px 16px;background:#fff}
+details.cortos>summary{cursor:pointer;font-weight:600;font-size:15px;padding:14px 0;min-height:44px;display:flex;align-items:center}
 /* Cierre */
 .cierre{background:var(--ink);color:#fff;border-radius:20px;padding:36px 40px;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between;margin-top:32px}
 @media(max-width:640px){.cierre{padding:24px}}
@@ -284,6 +310,28 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
       <p class="lead">Seis retos con tu trabajo real. En cada uno sabes qué traes, qué haces, con qué resultado sales y cómo lo compruebas. Todo con la fuente oficial al lado.</p>
     </section>
 
+    <div class="panel on" id="p-licencia">
+    <section class="sec" id="licencia">
+      <div class="aviso">
+        <div>
+          <h2>Antes de empezar: tu licencia no incluye Copilot Cowork</h2>
+          <p>Cowork es el agente de Microsoft que ejecuta tareas largas por ti. En estos retos tú pides y tú revisas, paso a paso. Si lo ves en un video, no lo busques en tu Copilot.</p>
+        </div>
+        <a class="btn big" href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/16/copilot-cowork-is-now-generally-available/">Qué es Cowork, según Microsoft</a>
+      </div>
+      <details class="lic" open>
+        <summary>Copilot Chat, Copilot Pro y Microsoft 365 Copilot: ¿cuál es la tuya?</summary>
+        <div class="licg" id="lic"></div>
+        <div class="grid2">
+          <div class="card"><h3>Qué significa para la clase</h3><ul id="implica" style="margin:10px 0 0;padding-left:18px;color:var(--ink2);font-size:15px"></ul></div>
+          <div class="card"><h3>Compruébalo en 1 minuto</h3><ul class="chk" id="chkLic"></ul></div>
+        </div>
+        <p class="note">Esta comparación sale de la documentación y de guías de terceros, y los nombres comerciales cambian. Confirma con tu área de tecnología qué licencia y qué funciones tienes habilitadas.</p>
+      </details>
+    </section>
+    </div>
+
+    <div class="panel" id="p-retos">
     <section class="sec">
       <div class="card">
         <p class="eyebrow">Cómo funciona cada reto</p>
@@ -327,24 +375,6 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
       </div>
     </section>
 
-    <section class="sec" id="licencia">
-      <div class="aviso">
-        <div>
-          <h2>Antes de empezar: tu licencia no incluye Copilot Cowork</h2>
-          <p>Cowork es el agente de Microsoft que ejecuta tareas largas por ti. En estos retos tú pides y tú revisas, paso a paso. Si lo ves en un video, no lo busques en tu Copilot.</p>
-        </div>
-        <a class="btn big" href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/16/copilot-cowork-is-now-generally-available/">Qué es Cowork, según Microsoft</a>
-      </div>
-      <details class="lic">
-        <summary>Copilot Chat, Copilot Pro y Microsoft 365 Copilot: ¿cuál es la tuya?</summary>
-        <div class="licg" id="lic"></div>
-        <div class="grid2">
-          <div class="card"><h3>Qué significa para la clase</h3><ul id="implica" style="margin:10px 0 0;padding-left:18px;color:var(--ink2);font-size:15px"></ul></div>
-          <div class="card"><h3>Compruébalo en 1 minuto</h3><ul class="chk" id="chkLic"></ul></div>
-        </div>
-        <p class="note">Esta comparación sale de la documentación y de guías de terceros, y los nombres comerciales cambian. Confirma con tu área de tecnología qué licencia y qué funciones tienes habilitadas.</p>
-      </details>
-    </section>
 
     <section class="sec" id="ruta">
       <h2>La ruta de 120 minutos</h2>
@@ -367,6 +397,14 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
       </div>
     </section>
     <p class="foot">Los datos de los retos se anonimizan siempre y lo que sale de Copilot es un borrador que revisa la persona responsable. Las funciones dependen de la licencia y de lo que el administrador de Allianz haya habilitado. Los enlaces llevan a la documentación de Microsoft, que cambia con frecuencia.</p>
+    </div>
+
+    <div class="panel" id="p-prompting"><section class="sec"></section></div>
+    <div class="panel" id="p-teams-chats"><section class="sec"></section></div>
+    <div class="panel" id="p-teams-reunion"><section class="sec"></section></div>
+    <div class="panel" id="p-facilitator"><section class="sec"></section></div>
+    <div class="panel" id="p-planner"><section class="sec"></section></div>
+    <div class="panel" id="p-onenote"><section class="sec"></section></div>
   </div>
 </main>
 
@@ -417,7 +455,7 @@ function pintarUsuario() {
   $('#homeHola').textContent = 'Hola, ' + st.user.nombre.split(' ')[0];
 }
 function irHome() { pintarUsuario(); pintarSesiones(); vista('home'); location.hash = ''; }
-function irSesion1() { pintarUsuario(); SECCIONES.forEach(pintarSeccion); vista('s1'); location.hash = 'sesion-1'; }
+function irSesion1() { pintarUsuario(); SECCIONES.forEach(pintarHerramienta); vista('s1'); location.hash = 'sesion-1'; panel('licencia'); }
 
 /* Entrada */
 function iniciarGate() {
@@ -494,12 +532,12 @@ function pintarRetos() {
       '</div><div class="col2">' +
         '<div><p class="eyebrow">Haces</p><div class="pasos">' + r.pasos.map(p => '<div class="paso"><span class="n">' + esc(p.n) + '</span><div><p>' + esc(p.texto) + '</p>' + (p.donde ? '<span class="d">' + esc(p.donde) + '</span>' : '') + '</div></div>').join('') + '</div></div>' +
         marco +
-        '<div class="pbox"><div class="h"><p class="eyebrow">Prompt de arranque</p><button type="button" class="btn cp">Copiar</button></div><pre>' + esc(r.prompt) + '</pre>' + (r.sec.length ? '<small>Los prompts completos de tu área, en 4 versiones por necesidad, están abajo.</small>' : '') + '</div>' +
+        '<div class="pbox"><div class="h"><p class="eyebrow">Prompt de arranque</p><button type="button" class="btn cp">Copiar</button></div><pre>' + esc(r.prompt) + '</pre>' + '</div>' + (r.sec.length ? '<div class="go">' + r.sec.map(id => '<button type="button" class="btn" data-go="' + id + '">Prompts de tu área: ' + esc(SECCIONES.find(x => x.id === id).nombre) + ' &rarr;</button>').join('') + '</div>' : '') +
         '<div class="falla"><p class="eyebrow">Si no te funciona</p><p>' + esc(r.siFalla) + '</p></div>' +
         '<div><p class="eyebrow">Referencias</p><div class="refs">' + r.refs.map(f => '<a href="' + esc(f.url) + '"><span>' + esc(f.titulo) + '</span><span>' + esc(f.fuente) + '</span></a>').join('') + '</div></div>' +
         (r.n === '6' ? '<div><p class="eyebrow">Lo que Copilot tenía mal</p><textarea id="correcciones" aria-label="Lo que Copilot tenía mal" placeholder="Ejemplo: asignó la tarea al responsable equivocado, inventó una fecha, omitió una decisión." style="margin-top:8px"></textarea><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" id="imprimir">Imprimir o guardar en PDF</button><button class="btn" type="button" id="limpiar">Borrar mi avance</button></div></div>' : '') +
-      '</div></div>' +
-      r.sec.map(id => { const d = SECCIONES.find(x => x.id === id); return '<details class="mas"><summary>Prompts completos de tu área: ' + esc(d.titulo) + '</summary><div class="in" id="sec-' + id + '"></div></details>'; }).join('');
+      '</div></div>';
+    a.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => panel(b.dataset.go)));
     a.querySelector('.cp').addEventListener('click', () => copiar(r.prompt));
     checks(a.querySelector('[data-v]'), r.valida.map(v => v.texto), 'v-' + r.n + '-');
     box.appendChild(a);
@@ -512,13 +550,57 @@ function pintarRetos() {
 
 /* Prompts por área */
 const SECCIONES = [
-  { id: 'prompting', datos: 'SEC_PROMPTING', titulo: 'súper prompt y validación' },
-  { id: 'teams-chats', datos: 'SEC_TEAMS_CHATS', titulo: 'chats y canales de Teams' },
-  { id: 'teams-reunion', datos: 'SEC_TEAMS_REUNION', titulo: 'Copilot en la reunión' },
-  { id: 'facilitator', datos: 'SEC_FACILITATOR', titulo: 'Facilitator' },
-  { id: 'planner', datos: 'SEC_PLANNER', titulo: 'Planner Agent' },
-  { id: 'onenote', datos: 'SEC_ONENOTE', titulo: 'OneNote' }
+  { id: 'prompting', datos: 'SEC_PROMPTING', tab: 'Prompting', nombre: 'prompting avanzado', min: '20 min', herr: [], cortos: () => [],
+    intro: 'Ya conoces Rol, Contexto e Instrucción. Hoy les sumas iteración, fuentes y validación, con el marco de Microsoft.' },
+  { id: 'teams-chats', datos: 'SEC_TEAMS_CHATS', tab: 'Chats', nombre: 'chats y canales de Teams', min: '35 min con Reunión y Facilitator', herr: ['Copilot en chats y canales'], cortos: () => TEAMS.slice(0, 3),
+    intro: 'Ponerte al día, buscar información y redactar o traducir sin salir de Teams.' },
+  { id: 'teams-reunion', datos: 'SEC_TEAMS_REUNION', tab: 'Reunión', nombre: 'Copilot en la reunión', min: '', herr: ['Copilot en la reunión'], cortos: () => TEAMS.slice(3, 6),
+    intro: 'Durante la reunión y después, sobre la transcripción. Decisiones con evidencia y pendientes con responsable.' },
+  { id: 'facilitator', datos: 'SEC_FACILITATOR', tab: 'Facilitator', nombre: 'Facilitator', min: '', herr: ['Facilitator'], cortos: () => TEAMS.slice(6),
+    intro: 'La instrucción que le das a Facilitator al abrir una reunión programada: agenda, notas, tiempos y cierre.' },
+  { id: 'planner', datos: 'SEC_PLANNER', tab: 'Planner', nombre: 'Planner Agent', min: '15 min', herr: ['Planner Agent'], cortos: () => PLANNER,
+    intro: 'La meta que le escribes al Planner Agent para que genere el plan de tu área.' },
+  { id: 'onenote', datos: 'SEC_ONENOTE', tab: 'OneNote', nombre: 'OneNote', min: '10 min', herr: ['Copilot en OneNote', 'Cuadernos de Copilot'], cortos: () => ONENOTE,
+    intro: 'Ordenar notas desordenadas, sacar pendientes y dejar el cuaderno limpio.' }
 ];
+function promptSimple(t) {
+  const d = el('div', 'pr');
+  d.innerHTML = '<div class="pr-h"><h3>' + esc(t.titulo) + '</h3><button class="btn" type="button">Copiar</button></div><div class="pr-b"><p class="code">' + esc(t.donde || '') + '</p><p>' + esc(t.prompt) + '</p></div>';
+  d.querySelector('button').addEventListener('click', () => copiar(t.prompt));
+  return d;
+}
+function pintarHerramienta(def) {
+  const cont = $('#p-' + def.id + ' .sec');
+  cont.innerHTML = '';
+  cont.appendChild(el('p', 'eyebrow acc', '/' + esc(def.id) + (def.min ? ' · ' + esc(def.min) : '')));
+  const h2 = el('h2', '', esc(def.tab === 'Prompting' ? 'Prompting avanzado y validación' : def.nombre)); h2.style.marginTop = '8px'; cont.appendChild(h2);
+  cont.appendChild(el('p', 'lead', esc(def.intro)));
+  def.herr.forEach(n => {
+    const h = HERRAMIENTAS.find(x => x.nombre === n); if (!h) return;
+    cont.appendChild(el('div', 'pr', '<div class="pr-h"><h3>' + esc(h.nombre) + '</h3><span class="chip">' + esc(h.grupo) + '</span></div><div class="pr-b"><p class="code">' + esc(h.donde) + '</p><p><b>Qué hace</b></p><ul style="margin:0 0 10px;padding-left:18px">' + h.hace.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul><p style="font-size:14px;color:var(--ink3)"><b>Ojo:</b> ' + h.limites.map(esc).join(' ') + '</p></div>'));
+  });
+  if (def.id === 'prompting') {
+    cont.appendChild(el('div', 'sub', '<h2>Lo mismo, en el marco de Microsoft</h2>'));
+    cont.appendChild(el('p', 'note', 'Microsoft enseña los prompts con cuatro elementos. Es el mismo RCI con dos agregados: la fuente y las expectativas.'));
+    cont.appendChild(el('div', 'marco', MARCO.map(m => '<div><b>' + esc(m.m) + '</b> <span class="mono" style="font-size:12px;color:var(--ink4)">(' + esc(m.rci) + ')</span><small>' + esc(m.ej) + '</small></div>').join('')));
+    cont.appendChild(el('div', 'sub', '<h2>Cuatro hábitos</h2>'));
+    cont.appendChild(el('div', 'hab', HABITOS.map(h => '<div class="it"><span class="n">' + esc(h.n) + '</span><div><h3>' + esc(h.titulo) + '</h3><p style="margin:4px 0 0;color:var(--ink3);font-size:15px">' + esc(h.texto) + '</p><p class="ej">' + esc(h.ejemplo) + '</p></div></div>').join('')));
+    cont.appendChild(el('div', 'sub', '<h2>Mismo pedido, dos prompts</h2>'));
+    cont.appendChild(el('div', 'cmp', '<div class="c mal"><div class="l">Pedido suelto</div>Resume este hilo de correos sobre el siniestro.</div><div class="c bien"><div class="l">Pedido con estructura</div>Eres un analista senior de siniestros de seguros generales. El hilo tiene 40 correos de un siniestro por daños a un establecimiento y el asegurado reclama demora. Resume en 5 viñetas con fechas, lista los documentos que faltan y redacta un correo de máximo 150 palabras, con tono empático y sin prometer cobertura. Marca los supuestos.</div>'));
+    cont.appendChild(el('div', 'sub', '<h2>Antes de usar la respuesta</h2>'));
+    const card = el('div', 'card'); card.style.marginTop = '12px'; const ul = el('ul', 'chk'); card.appendChild(ul); cont.appendChild(card);
+    checks(ul, VALIDAR, 'v');
+  }
+  cont.appendChild(el('div', 'sub', '<h2>Prompts de tu área</h2><span class="min">4 por necesidad · elige tu área</span>'));
+  cont.appendChild(el('div', '', '')).id = 'sec-' + def.id;
+  pintarSeccion(def);
+  const cortos = def.cortos();
+  if (cortos.length) {
+    const d = el('details', 'cortos', '<summary>Más prompts cortos para practicar</summary>');
+    cortos.forEach(x => d.appendChild(promptSimple(x)));
+    cont.appendChild(d);
+  }
+}
 function sec(nombre) { try { return eval(nombre); } catch (e) { return []; } }
 function nPal(s) { return s.trim().split(/\s+/).length; }
 function pintarSeccion(def) {
@@ -530,7 +612,7 @@ function pintarSeccion(def) {
   AREAS.forEach(x => {
     const b = el('button', '', '<i style="background:' + x.color + '"></i>' + esc(x.nombre));
     b.type = 'button'; b.setAttribute('aria-pressed', x.id === a.id ? 'true' : 'false');
-    b.addEventListener('click', () => { st.areaVista = x.id; save(); SECCIONES.forEach(pintarSeccion); });
+    b.addEventListener('click', () => { st.areaVista = x.id; save(); SECCIONES.forEach(d => { if ($('#sec-' + d.id)) pintarSeccion(d); }); });
     selb.appendChild(b);
   });
   cont.appendChild(selb);
@@ -569,11 +651,16 @@ function pintarSeccion(def) {
 }
 
 /* Sesión 1 */
+const PANELES = [['licencia', 'Licencia'], ['retos', 'Retos'], ['prompting', 'Prompting'], ['teams-chats', 'Chats'], ['teams-reunion', 'Reunión'], ['facilitator', 'Facilitator'], ['planner', 'Planner'], ['onenote', 'OneNote']];
+function panel(id) {
+  document.querySelectorAll('#s1 .panel').forEach(p => p.classList.toggle('on', p.id === 'p-' + id));
+  document.querySelectorAll('#navtabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.p === id ? 'true' : 'false'));
+  const h = $('#s1 .hero'); if (h) h.scrollIntoView();
+  window.scrollTo(0, 0);
+}
 function iniciarSesion1() {
   const nt = $('#navtabs');
-  [['licencia', 'Licencia'], ['caso', 'Caso'], ['ruta', 'Ruta']].concat(RETOS.map(r => ['reto-' + r.n, 'Reto ' + r.n])).forEach(t => {
-    const x = el('a', '', esc(t[1])); x.href = '#' + t[0]; nt.appendChild(x);
-  });
+  PANELES.forEach(p => { const x = el('button', '', esc(p[1])); x.type = 'button'; x.dataset.p = p[0]; x.setAttribute('role', 'tab'); x.addEventListener('click', () => panel(p[0])); nt.appendChild(x); });
   const rs = $('#ruta-seg');
   RUTA.forEach(s => rs.appendChild(el('div', 'seg', '<span class="a">' + s.n + '</span><span class="b">' + esc(s.titulo) + '</span><span class="c">' + s.min + ' min</span>')));
   rs.querySelectorAll('.seg').forEach((d, i) => { d.style.flex = RUTA[i].min + ' 1 0'; d.style.background = RUTA[i].bg; d.style.color = RUTA[i].fg; });

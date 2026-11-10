@@ -123,6 +123,7 @@ def check_template_prose(tpl):
 def main():
     tpl = (SRC / "template.html").read_text(encoding="utf-8")
     js = (SRC / "sesion1.js").read_text(encoding="utf-8").strip()
+    js += "\n\n" + (SRC / "retos.js").read_text(encoding="utf-8").strip()
     secs = sorted((SRC / "secciones").glob("*.js"))
     js += "\n\n" + "\n\n".join(f.read_text(encoding="utf-8").strip() for f in secs)
     areas = sorted((SRC / "areas").glob("*.js"))

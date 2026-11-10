@@ -37,47 +37,7 @@ const AREAS = [
   }
 ];
 
-const RUTA = [
-  { bloque: "Prompting avanzado y validación", min: 20 },
-  { bloque: "Teams: chats, traducción, ponerse al día, Facilitator y plantillas de actas", min: 35 },
-  { bloque: "Planner", min: 15 },
-  { bloque: "OneNote", min: 10 },
-  { bloque: "Ejercicio: ciclo de una reunión", min: 30 },
-  { bloque: "Pausa y cierre", min: 10 }
-];
 
-const HERRAMIENTAS = [
-  {
-    grupo: "Teams", nombre: "Copilot en chats y canales", donde: "Panel de Copilot dentro del chat o del canal.",
-    hace: ["Resume los mensajes que no has leído, mirando 30 días atrás si no le dices otro plazo.", "Resume un hilo de canal desde el botón al final del hilo. El hilo necesita al menos 1.000 caracteres.", "Responde preguntas sobre lo que se dijo en esa conversación.", "Mejora un borrador con la opción Reescribir con Copilot del cuadro de mensaje."],
-    limites: ["No resume imágenes, componentes Loop ni archivos compartidos en el hilo."]
-  },
-  {
-    grupo: "Teams", nombre: "Copilot en la reunión", donde: "Panel de Copilot durante la reunión y pestaña de resumen después.",
-    hace: ["Te pone al día si llegas tarde y responde preguntas durante la reunión. Lo que preguntas solo lo ves tú.", "Después deja un resumen con puntos clave, decisiones y tareas en la pestaña de resumen de la reunión."],
-    limites: ["Necesita la transcripción activada. Sin transcripción no hay resumen."]
-  },
-  {
-    grupo: "Teams", nombre: "Facilitator", donde: "Participante visible dentro de reuniones programadas.",
-    hace: ["Toma notas compartidas en vivo que todos pueden editar.", "Sigue la agenda y avisa cuándo toca el siguiente tema.", "Deja un resumen con decisiones y pendientes.", "Crea tareas que se sincronizan con Planner (en vista previa pública según varias fuentes).", "Redacta un documento de Word con el contenido de la reunión (estado por confirmar)."],
-    limites: ["Solo funciona en reuniones programadas. No funciona en chats, reuniones instantáneas, llamadas ni reuniones de canal.", "El administrador debe permitir Copilot y Facilitator durante o después de la reunión."]
-  },
-  {
-    grupo: "Planner", nombre: "Planner Agent", donde: "Dentro de Planner, también desde Teams. Antes se llamaba Copilot en Planner y Project Manager.",
-    hace: ["Crea tareas a partir de un objetivo: pestaña Metas, Agregar meta y Generar tareas, con archivos de apoyo opcionales.", "Sugiere tareas, las ordena en cubos y las divide en subtareas.", "Genera un informe de estado en la pestaña Informes cuando el plan tiene al menos 10 tareas."],
-    limites: ["Generar tareas desde metas pide un plan premium de Planner, además de la licencia Copilot.", "No lee tus reuniones por sí solo. Los acuerdos llegan por Facilitator o los pasas tú desde Copilot Chat."]
-  },
-  {
-    grupo: "OneNote", nombre: "Copilot en OneNote", donde: "Icono de Copilot en la página o clic derecho sobre el texto.",
-    hace: ["Resume una sección, una página o un texto seleccionado.", "Crea una lista de tareas a partir de tus notas.", "Reescribe un texto y redacta un borrador de plan o de esquema.", "Responde preguntas sobre el cuaderno desde el panel de chat."],
-    limites: ["Pide licencia Copilot de trabajo. Está en Windows, Mac, iPad y web.", "No aparece si el equipo tiene Windows Information Protection activo."]
-  },
-  {
-    grupo: "OneNote", nombre: "Cuadernos de Copilot", donde: "Espacio aparte donde reúnes fuentes sobre un tema.",
-    hace: ["Usa como fuentes tus reuniones de Teams, chats, archivos y páginas.", "Es el puente hacia la sesión 3, donde decidimos cuándo usar un cuaderno y cuándo un agente."],
-    limites: ["Necesita licencia de SharePoint o OneDrive para crear cuadernos."]
-  }
-];
 
 const MARCO = [
   { m: "Objetivo", rci: "Instrucción", ej: "Prepárame 5 viñetas para la reunión con la pyme del sector alimentos." },
@@ -86,52 +46,11 @@ const MARCO = [
   { m: "Expectativas", rci: "Formato y límites", ej: "Tono formal, tabla de 5 filas, marca los supuestos." }
 ];
 
-const TEAMS = [
-  { titulo: "Ponerte al día en un chat", donde: "Panel de Copilot en el chat", prompt: "Resume lo que no he leído en este chat desde el lunes. Dame las decisiones, las preguntas que me hicieron a mí y lo que tengo pendiente, en máximo 6 viñetas." },
-  { titulo: "Buscar información en tus chats", donde: "Copilot Chat, pestaña Trabajo", prompt: "Busca en mis chats y canales de Teams de las últimas dos semanas lo que se dijo sobre [tema]. Dame 5 viñetas, con quién lo dijo y en qué chat, para que yo pueda abrirlo y confirmarlo." },
-  { titulo: "Redactar o traducir al inglés", donde: "Reescribir con Copilot o Copilot Chat", prompt: "Reescribe este mensaje en inglés para un colega de otra oficina. Tono profesional y cercano, máximo 80 palabras. Dame también una versión más corta: [pega tu mensaje]." },
-  { titulo: "Llegar tarde a la reunión", donde: "Panel de Copilot en la reunión", prompt: "Llegué 20 minutos tarde. Resúmeme lo que se habló hasta ahora, las decisiones que ya se tomaron y lo que se está discutiendo en este momento, en máximo 6 viñetas." },
-  { titulo: "Preguntar durante la reunión", donde: "Panel de Copilot en la reunión", prompt: "¿Quién quedó de entregar qué, y para cuándo? Dame solo lo que se dijo hasta ahora y no completes lo que falte." },
-  { titulo: "Decisiones y pendientes", donde: "Copilot en la reunión, después", prompt: "Con la transcripción de esta reunión, lista las decisiones tomadas y los pendientes. Para cada pendiente indica responsable y fecha. Si no se dijo, escribe PENDIENTE y no lo inventes. Indica en qué parte de la reunión aparece cada uno." },
-  { titulo: "Acta con tu plantilla", donde: "Copilot en la reunión o Facilitator", prompt: "Redacta el acta de esta reunión con exactamente esta estructura: [pega aquí los títulos de tu plantilla]. Usa tono formal y marca con [VERIFICAR] lo que no esté claro en la transcripción." }
-];
 
-const PLANNER = [
-  { titulo: "Meta para el Planner Agent", donde: "Planner, pestaña Metas", prompt: "Meta: Dejar listo el cierre de la reunión semanal de siniestros complejos. Incluye una tarea por cada caso con ajustador responsable y fecha, y una tarea final para revisar los avances el viernes." },
-  { titulo: "Acuerdos a tareas desde Copilot Chat", donde: "Copilot Chat, luego pegas en Planner", prompt: "Convierte los acuerdos de esta reunión en una tabla con título corto, responsable, fecha límite, prioridad y cubo sugerido. Si falta el responsable o la fecha, escribe PENDIENTE." },
-  { titulo: "Informe de estado del plan", donde: "Planner, pestaña Informes", prompt: "Genera un informe de estado de este plan para el comité: qué avanzó, qué está atrasado, qué depende de otra persona y qué decisión necesitamos." },
-  { titulo: "Revisar un plan que ya existe", donde: "Planner Agent", prompt: "Revisa este plan y dime qué tareas no tienen responsable, cuáles tienen fecha vencida y cuáles dependen de otras. Propón qué mover primero y por qué." }
-];
 
-const ONENOTE = [
-  { titulo: "Resumir y sacar acciones", donde: "OneNote, panel de Copilot", prompt: "Resume mis notas de esta página. Lista los puntos de acción con responsable y fecha si aparecen." },
-  { titulo: "Lista de tareas desde la página", donde: "OneNote, clic derecho", prompt: "Crea una lista de tareas con lo que quedó pendiente en esta página, ordenada por urgencia. No agregues nada que no esté en las notas." },
-  { titulo: "Ordenar notas por tema", donde: "OneNote, panel de Copilot", prompt: "Ordena estas notas por tema. Dame un título para cada tema, 3 viñetas por tema y al final las preguntas que quedaron abiertas." },
-  { titulo: "Reescribir con claridad", donde: "OneNote, clic derecho", prompt: "Reescribe este texto con frases cortas y claras para que otra persona del equipo lo entienda sin haber estado en la reunión." }
-];
 
-const HABITOS = [
-  { n: "1", titulo: "Estructura", texto: "Usa Rol, Contexto e Instrucción. Agrega el formato que quieres (tabla, viñetas, longitud) y los límites (qué no debe hacer).", ejemplo: "Resume en 5 viñetas con fecha. Máximo 150 palabras. No prometas cobertura." },
-  { n: "2", titulo: "Itera", texto: "La primera respuesta es un borrador. Pide ajustes concretos en lugar de empezar de cero.", ejemplo: "Hazlo más corto, cambia el tono a formal y agrega una columna con la fecha." },
-  { n: "3", titulo: "Pide fuentes", texto: "Pide que cada afirmación diga de dónde sale: qué correo, qué minuto de la reunión, qué documento.", ejemplo: "Indica para cada decisión en qué parte de la transcripción aparece." },
-  { n: "4", titulo: "Valida", texto: "Contrasta con la fuente antes de usar o enviar. Copilot puede equivocarse con nombres, cifras y fechas.", ejemplo: "Marca con [VERIFICAR] lo que no puedas confirmar en el documento." }
-];
 
-const VALIDAR = [
-  "Los nombres de personas y áreas coinciden con la transcripción.",
-  "Las cifras y fechas están en la fuente, no las puso Copilot por su cuenta.",
-  "Cada decisión y cada compromiso aparece de verdad en la reunión.",
-  "No hay promesas, coberturas ni compromisos que nadie dijo.",
-  "Un responsable humano revisó el borrador antes de enviarlo."
-];
 
-const CICLO = [
-  { min: 5, titulo: "Prepara la agenda", texto: "Pídele a Copilot la agenda de tu reunión real, con tiempos por tema y preguntas clave." },
-  { min: 8, titulo: "Resume y extrae decisiones", texto: "Con la transcripción, saca el resumen, las decisiones y redacta el acta en la plantilla propia de tu equipo." },
-  { min: 7, titulo: "Pasa los acuerdos a Planner", texto: "Crea el plan con tarea, responsable y fecha para cada acuerdo. Usa el Planner Agent con una meta, las tareas de Facilitator o la tabla de Copilot Chat, según lo que tengas habilitado." },
-  { min: 5, titulo: "Deja las notas en OneNote", texto: "Guarda el resumen y los pendientes en tu cuaderno, ordenados por tema." },
-  { min: 5, titulo: "Valida contra la transcripción", texto: "Revisa el acta y el plan frente a lo que se dijo de verdad. Anota abajo lo que Copilot tenía mal." }
-];
 
 const SESIONES = [
   { n: 1, titulo: "Copilot para productividad", detalle: "Teams, Planner, OneNote y prompting avanzado. El ciclo completo de una reunión.", estado: "abierta" },

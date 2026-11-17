@@ -366,6 +366,7 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
 .cmds{border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .cmds .row{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 20px;padding:12px 18px;border-top:1px solid var(--line);align-items:start}
 .cmds .row:first-child{border-top:0}
+.cmds .row.sep{display:block;padding:10px 18px;background:var(--soft);font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--ink3)}
 .cmds kbd{justify-self:start;font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line2);border-bottom-width:2px;border-radius:6px;padding:3px 8px;white-space:nowrap}
 .cmds span{font-size:14px;line-height:1.5;color:var(--ink3)}
 @media(max-width:560px){.cmds .row{grid-template-columns:1fr}}
@@ -10983,17 +10984,17 @@ const FUNCIONES2 = [
   },
   {
     grupo: "Excel", nombre: "Gr\u00e1ficos, tablas din\u00e1micas e informe", icono: "chart", en: "Charts and PivotTables", estado: "disponible",
-    donde: "Se piden en el panel de Copilot. La habilidad @chart-design se activa en el men\u00fa de configuraci\u00f3n del panel.",
-    hace: ["Crea gr\u00e1ficos y tablas din\u00e1micas vinculados a los datos y editables.", "Arma una hoja de informe con resumen, tablas y gr\u00e1ficos.", "Con @chart-design recomienda el tipo de gr\u00e1fico y mejora los existentes."],
-    limites: ["@chart-design viene desactivada y sigue en despliegue."],
+    donde: "Se piden en el panel de Copilot. Para mejores gr\u00e1ficos escribe @chart-best-practices y para segmentaciones @slicer-best-practices.",
+    hace: ["Crea gr\u00e1ficos y tablas din\u00e1micas vinculados a los datos y editables.", "Arma una hoja de informe con resumen, tablas y gr\u00e1ficos.", "Con @chart-best-practices crea o corrige gr\u00e1ficos con buenas pr\u00e1cticas. Con @charts-in-chat los ves como imagen en el chat."],
+    limites: ["Si una habilidad no aparece al escribir @, p\u00eddelo con tus palabras en el panel."],
     prueba: "Crea una hoja Informe con una tabla din\u00e1mica por [categor\u00eda] y un gr\u00e1fico de barras ordenado de mayor a menor. Escribe arriba 3 conclusiones con la cifra que las respalda.",
     fuentes: [{ titulo: "Habilidades integradas de Copilot en Excel", url: "https://support.microsoft.com/en-us/excel/copilot/copilot-in-excel-built-in-skills" }]
   },
   {
-    grupo: "Excel", nombre: "Lienzo interactivo", icono: "dashboard", en: "@interactive-canvas", estado: "vista",
+    grupo: "Excel", nombre: "Lienzo interactivo", icono: "dashboard", en: "@interactive-canvas", estado: "disponible",
     donde: "Se pide en el panel: crea un dashboard con estos datos.",
     hace: ["Convierte los datos en un tablero interactivo con m\u00e9tricas, gr\u00e1ficos y hallazgos.", "Se actualiza cuando cambian los datos."],
-    limites: ["En vista previa en noviembre de 2026. Si no te aparece, pide los gr\u00e1ficos y la tabla din\u00e1mica en una hoja Informe."],
+    limites: ["Lleg\u00f3 hace poco y puede no estar en todas las cuentas. Si no te aparece, pide los gr\u00e1ficos y la tabla din\u00e1mica en una hoja Informe."],
     prueba: "",
     fuentes: [{ titulo: "Copilot se pone a trabajar en Excel", url: "https://techcommunity.microsoft.com/blog/ExcelBlog/beyond-analysis-copilot-gets-to-work-in-excel/4517581" }]
   },
@@ -11084,17 +11085,30 @@ const COMANDOS2 = {
     { k: "Ctrl+Z", t: "Deshace un cambio que hizo Copilot." }
   ],
   Excel: [
+    { sep: "Atajos" },
     { k: "Alt+C", t: "Lleva al bot\u00f3n de Copilot. Enter abre el panel." },
     { k: "F6", t: "Cambia entre el panel de Copilot y la hoja. Tambi\u00e9n Ctrl+F6." },
     { k: "Shift+Tab", t: "Desde el cuadro de texto llega al selector de modo: edici\u00f3n, Plan o solo chat." },
-    { k: "@clean-data", t: "Limpia espacios, formatos, fechas y duplicados. T\u00fa apruebas cada correcci\u00f3n." },
-    { k: "@chart-design", t: "Recomienda el tipo de gr\u00e1fico y mejora los existentes. Viene desactivada." },
-    { k: "@theme-design", t: "Aplica una paleta de colores al libro. En despliegue." },
-    { k: "@brand-kit", t: "Aplica la marca de la empresa, si un administrador la configur\u00f3." },
-    { k: "@interactive-canvas", t: "Convierte los datos en un tablero interactivo. Vista previa." },
-    { k: "@skill-builder", t: "Guarda un proceso que repites como habilidad reutilizable en tu OneDrive." },
     { k: "=", t: "En una celda, Copilot sugiere la f\u00f3rmula completa con vista previa." },
-    { k: "Revisar \u203a Mostrar cambios", t: "Muestra qu\u00e9 celdas edit\u00f3 Copilot. Ctrl+Z deshace." }
+    { k: "Revisar \u203a Mostrar cambios", t: "Muestra qu\u00e9 celdas edit\u00f3 Copilot. Ctrl+Z deshace." },
+    { sep: "Habilidades con @" },
+    { k: "@clean-data", t: "Detecta y corrige problemas de calidad de datos: espacios, duplicados, fechas, montos, may\u00fasculas y vac\u00edos." },
+    { k: "@advanced-text-analysis", t: "Etiqueta, clasifica, agrupa o resume texto libre, como observaciones, rese\u00f1as o tickets." },
+    { k: "@chart-best-practices", t: "Crea o corrige gr\u00e1ficos de Excel con buenas pr\u00e1cticas." },
+    { k: "@charts-in-chat", t: "Genera gr\u00e1ficos como imagen en el chat." },
+    { k: "@slicer-best-practices", t: "Crea segmentaciones de datos (slicers)." },
+    { k: "@theme-design", t: "Aplica un tema visual coherente a una hoja o libro." },
+    { k: "@brandkit", t: "Aplica colores, fuentes y logos de la marca de tu organizaci\u00f3n." },
+    { k: "@interactive-canvas", t: "Crea dashboards e informes HTML interactivos con datos del libro." },
+    { k: "@visual-artifact", t: "Produce visuales como gr\u00e1ficos, diagramas o dashboards dentro del chat." },
+    { k: "@formula_discovery", t: "Inspecciona patrones de f\u00f3rmulas y dependencias en el libro." },
+    { k: "@change-history", t: "Resume, audita o revierte cambios recientes: qui\u00e9n, qu\u00e9 y cu\u00e1ndo." },
+    { k: "@tabular-data", t: "Crea tablas grandes y precisas y las escribe en una hoja." },
+    { k: "@excel-parser", t: "Lee archivos .xlsx y .xlsm locales." },
+    { k: "@image-extract", t: "Extrae im\u00e1genes incrustadas de PDF, Excel, Word o PowerPoint." },
+    { k: "@pdf", t: "Lee, crea, une, divide o aplica OCR a PDFs." },
+    { k: "@officejs-perf-best-practice", t: "Gu\u00eda para construir contenido grande en hojas de forma eficiente." },
+    { k: "@skill-builder", t: "Convierte un flujo de trabajo en una habilidad reutilizable." }
   ],
   PowerPoint: [
     { k: "Icono de Copilot", t: "Esquina inferior derecha. Abre el chat que crea y edita la presentaci\u00f3n." },
@@ -13013,7 +13027,7 @@ function pintarHerramienta2(def) {
   const cm = COMANDOS2[def.grupo] || [];
   if (cm.length) {
     main.appendChild(el('div', 'sec-h', '<div><p class="k">Comandos y atajos</p><h2>Lo que escribes o pulsas en ' + esc(def.tab) + '</h2></div>')).style.marginTop = '24px';
-    main.appendChild(el('div', 'cmds', cm.map(c => '<div class="row"><kbd>' + esc(c.k) + '</kbd><span>' + esc(c.t) + '</span></div>').join('')));
+    main.appendChild(el('div', 'cmds', cm.map(c => c.sep ? '<div class="row sep">' + esc(c.sep) + '</div>' : '<div class="row"><kbd>' + esc(c.k) + '</kbd><span>' + esc(c.t) + '</span></div>').join('')));
     main.appendChild(el('p', 'note', 'Algunas etiquetas aparecen en ingl\u00e9s en tu Copilot. Las funciones llegan por etapas, as\u00ed que puede que no veas todas todav\u00eda.'));
   }
   const ojo = OJO2[def.grupo] || [];

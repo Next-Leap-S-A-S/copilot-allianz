@@ -320,3 +320,18 @@ const COMANDOS2 = {
     { k: "Vista › Notas", t: "Genera notas del orador para una diapositiva o todas. También se piden en el chat." }
   ]
 };
+
+const RECURSOS2 = [
+  {
+    grupo: "Excel", icono: "sheet", archivo: "materiales/Inventario_siniestros_abiertos_crudo.xlsx", tipo: "XLSX · 146 KB",
+    titulo: "Inventario de siniestros abiertos (crudo)",
+    detalle: "1.217 siniestros sintéticos con errores a propósito: ramos y ciudades escritos de varias formas, fechas mezcladas, montos como texto, duplicados y valores atípicos. Trae una hoja Léeme y la tabla de documentos por ramo.",
+    uso: "Guárdalo en tu OneDrive, ábrelo en Excel y sigue la práctica de tu área desde la limpieza hasta la hoja Informe."
+  },
+  {
+    grupo: "Word", icono: "file", archivo: "materiales/Procedimiento_siniestros_complejos_v3.2.docx", tipo: "DOCX · 13 KB",
+    titulo: "Procedimiento de atención de siniestros complejos v3.2",
+    detalle: "Procedimiento sintético de unas 2.900 palabras con roles, etapas, plazos, escalamiento, comité semanal, uso de Copilot y anexos. Tiene inconsistencias a propósito para que Copilot las encuentre.",
+    uso: "Pídele a Copilot que lo resuma, que encuentre plazos y umbrales que se contradicen y que redacte la carta de solicitud única de documentos del caso 0417."
+  }
+];

@@ -54,7 +54,7 @@ const MARCO = [
 
 const SESIONES = [
   { n: 1, titulo: "Copilot para productividad", detalle: "Teams, Planner, OneNote y prompting avanzado. El ciclo completo de una reunión.", estado: "abierta" },
-  { n: 2, titulo: "Copilot dentro de Office 365", detalle: "Outlook, Word, Excel y PowerPoint. Un comité de punta a punta con datos propios.", estado: "pronto" },
+  { n: 2, titulo: "Copilot dentro de Office 365", detalle: "Outlook, Word, Excel y PowerPoint. Un comité de punta a punta con datos propios.", estado: "abierta" },
   { n: 3, titulo: "Cuadernos y agentes: construcción", detalle: "Cuándo usar un cuaderno y cuándo un agente. Construcción de agentes reales por área.", estado: "pronto" },
   { n: 4, titulo: "Agentes: pruebas y entrega", detalle: "Casos difíciles, ajustes y plan de seguimiento. Cada área presenta su agente.", estado: "pronto" }
 ];

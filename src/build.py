@@ -2,6 +2,7 @@
 """Ensambla index.html (Formacion Copilot, equipos Allianz) a partir de src/.
 
 - template.html   : marcado, estilos y logica (UTF-8, legible)
+- sesion2.js y secciones2/*.js : sesion 2 (funciones por herramienta y prompts por area)
 - sesion1.js      : contenido de la sesion 1 (areas, prompts, ruta), UTF-8 legible
 - assets/         : tipografias .woff2 y logo, se incrustan en base64
 
@@ -35,14 +36,11 @@ def b64(path):
 
 
 def font_css():
-    faces = [("IBM Plex Mono", 400, "ibmplexmono-400.woff2"),
-             ("IBM Plex Mono", 500, "ibmplexmono-500.woff2"),
-             ("Inter", 400, "inter-400.woff2"),
-             ("Inter", 500, "inter-500.woff2"),
-             ("Inter", 600, "inter-600.woff2")]
+    faces = [("Geist", "100 900", "geist.woff2"),
+             ("Geist Mono", "100 900", "geist-mono.woff2")]
     out = []
     for fam, w, fn in faces:
-        out.append("@font-face{font-family:'%s';font-style:normal;font-weight:%d;font-display:swap;"
+        out.append("@font-face{font-family:'%s';font-style:normal;font-weight:%s;font-display:swap;"
                    "src:url(data:font/woff2;base64,%s) format('woff2');}" % (fam, w, b64(SRC / "assets" / fn)))
     return "\n".join(out)
 
@@ -128,6 +126,9 @@ def main():
     js += "\n\n" + "\n\n".join(f.read_text(encoding="utf-8").strip() for f in secs)
     areas = sorted((SRC / "areas").glob("*.js"))
     js += "\n\n" + "\n\n".join(f.read_text(encoding="utf-8").strip() for f in areas)
+    js += "\n\n" + (SRC / "sesion2.js").read_text(encoding="utf-8").strip()
+    secs2 = sorted((SRC / "secciones2").glob("*.js"))
+    js += "\n\n" + "\n\n".join(f.read_text(encoding="utf-8").strip() for f in secs2)
 
     problems, n_rci = check_data(js)
     problems += check_template_prose(tpl)

@@ -362,6 +362,12 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
 .trae>div:first-child{flex-direction:column;gap:6px}
 .trae>div:first-child b{font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:.18em;color:var(--ink3)}
 .trae svg{flex:none;color:var(--ink3)}
+.cmds{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cmds .row{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 20px;padding:12px 18px;border-top:1px solid var(--line);align-items:start}
+.cmds .row:first-child{border-top:0}
+.cmds kbd{justify-self:start;font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line2);border-bottom-width:2px;border-radius:6px;padding:3px 8px;white-space:nowrap}
+.cmds span{font-size:14px;line-height:1.5;color:var(--ink3)}
+@media(max-width:560px){.cmds .row{grid-template-columns:1fr}}
 .ses .sico{display:flex;justify-content:space-between;align-items:flex-start}
 .ses.off .ico{background:#fff;border-color:var(--line2);color:#A3A3A3}
 @media print{.top,.btn,.icb,.chips,.back,details.mas{display:none!important}body{background:#fff}.reto,.fcard{break-inside:avoid}}
@@ -933,6 +939,12 @@ function pintarHerramienta2(def) {
   main.appendChild(el('div', 'sec-h', '<div><p class="k">Funciones</p><h2>Qué puede hacer Copilot en ' + esc(def.tab) + '</h2></div><div class="leyenda"><span><i class="dot disponible"></i>Disponible</span><span><i class="dot vista"></i>Vista previa</span><span><i class="dot confirmar"></i>Retirada</span></div>'));
   const g = el('div', 'fgrid'); main.appendChild(g);
   fs.forEach((f, i) => g.appendChild(funcion2(f, def, i)));
+  const cm = COMANDOS2[def.grupo] || [];
+  if (cm.length) {
+    main.appendChild(el('div', 'sec-h', '<div><p class="k">Comandos y atajos</p><h2>Lo que escribes o pulsas en ' + esc(def.tab) + '</h2></div>')).style.marginTop = '24px';
+    main.appendChild(el('div', 'cmds', cm.map(c => '<div class="row"><kbd>' + esc(c.k) + '</kbd><span>' + esc(c.t) + '</span></div>').join('')));
+    main.appendChild(el('p', 'note', 'Algunas etiquetas aparecen en inglés en tu Copilot. Las funciones llegan por etapas, así que puede que no veas todas todavía.'));
+  }
   const ojo = OJO2[def.grupo] || [];
   if (ojo.length) main.appendChild(el('div', 'warnbox', svg('alert', 20) + '<div><span class="k">LO QUE SUELE FALLAR</span><ul>' + ojo.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul></div>'));
   const as = el('aside', 'practica'); as.setAttribute('aria-label', 'Práctica de tu área'); lay.appendChild(as);

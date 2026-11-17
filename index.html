@@ -363,6 +363,12 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
 .trae>div:first-child{flex-direction:column;gap:6px}
 .trae>div:first-child b{font-size:12px;font-weight:400;text-transform:uppercase;letter-spacing:.18em;color:var(--ink3)}
 .trae svg{flex:none;color:var(--ink3)}
+.cmds{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.cmds .row{display:grid;grid-template-columns:minmax(150px,240px) 1fr;gap:6px 20px;padding:12px 18px;border-top:1px solid var(--line);align-items:start}
+.cmds .row:first-child{border-top:0}
+.cmds kbd{justify-self:start;font-family:var(--mono);font-size:12.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line2);border-bottom-width:2px;border-radius:6px;padding:3px 8px;white-space:nowrap}
+.cmds span{font-size:14px;line-height:1.5;color:var(--ink3)}
+@media(max-width:560px){.cmds .row{grid-template-columns:1fr}}
 .ses .sico{display:flex;justify-content:space-between;align-items:flex-start}
 .ses.off .ico{background:#fff;border-color:var(--line2);color:#A3A3A3}
 @media print{.top,.btn,.icb,.chips,.back,details.mas{display:none!important}body{background:#fff}.reto,.fcard{break-inside:avoid}}
@@ -11042,6 +11048,49 @@ const FUNCIONES2 = [
   }
 ];
 
+const COMANDOS2 = {
+  Outlook: [
+    { k: "Resumen por Copilot", t: "Bot\u00f3n arriba del hilo. Resume la conversaci\u00f3n con citas a cada correo." },
+    { k: "Copilot \u203a Borrador", t: "En un correo nuevo o respuesta. Generar, Regenerar y Mantenerlo, con ajuste de tono y longitud." },
+    { k: "Copilot \u203a Entrenamiento", t: "Revisa tono y claridad de lo que escribiste. Pide al menos 100 caracteres." },
+    { k: "Programar con Copilot", t: "Desde un correo crea la reuni\u00f3n con agenda, resumen y asistentes." },
+    { k: "Alt+I", t: "Dentro de la descripci\u00f3n de una reuni\u00f3n nueva, abre Copilot para redactar la agenda." },
+    { k: "Preparar para esta reuni\u00f3n", t: "En el calendario o en el chat. Re\u00fane correos, archivos y chats de esa reuni\u00f3n." },
+    { k: "Bot\u00f3n Copilot", t: "Abre el chat sobre tu buz\u00f3n y calendario, en panel o p\u00e1gina completa." }
+  ],
+  Word: [
+    { k: "Alt+C", t: "Abre Copilot en Windows. En Mac es Cmd+Ctrl+I." },
+    { k: "Editar con Copilot", t: "El modo por defecto. Copilot cambia el documento y al final resume lo que hizo." },
+    { k: "Solo chat", t: "Copilot responde preguntas sin tocar el documento." },
+    { k: "/", t: "Cita un archivo, correo o reuni\u00f3n de OneDrive o SharePoint como fuente del borrador." },
+    { k: "Reescribir", t: "Aparece al seleccionar texto, en la minibarra. En Mac, con clic derecho." },
+    { k: "Revisar \u203a Comparar \u203a Comparar", t: "Funci\u00f3n de Word de escritorio. Marca las diferencias y luego Copilot las resume." },
+    { k: "Ctrl+Z", t: "Deshace un cambio que hizo Copilot." }
+  ],
+  Excel: [
+    { k: "Alt+C", t: "Lleva al bot\u00f3n de Copilot. Enter abre el panel." },
+    { k: "F6", t: "Cambia entre el panel de Copilot y la hoja. Tambi\u00e9n Ctrl+F6." },
+    { k: "Shift+Tab", t: "Desde el cuadro de texto llega al selector de modo: edici\u00f3n, Plan o solo chat." },
+    { k: "@clean-data", t: "Limpia espacios, formatos, fechas y duplicados. T\u00fa apruebas cada correcci\u00f3n." },
+    { k: "@chart-design", t: "Recomienda el tipo de gr\u00e1fico y mejora los existentes. Viene desactivada." },
+    { k: "@theme-design", t: "Aplica una paleta de colores al libro. En despliegue." },
+    { k: "@brand-kit", t: "Aplica la marca de la empresa, si un administrador la configur\u00f3." },
+    { k: "@interactive-canvas", t: "Convierte los datos en un tablero interactivo. Vista previa." },
+    { k: "@skill-builder", t: "Guarda un proceso que repites como habilidad reutilizable en tu OneDrive." },
+    { k: "=", t: "En una celda, Copilot sugiere la f\u00f3rmula completa con vista previa." },
+    { k: "Revisar \u203a Mostrar cambios", t: "Muestra qu\u00e9 celdas edit\u00f3 Copilot. Ctrl+Z deshace." }
+  ],
+  PowerPoint: [
+    { k: "Icono de Copilot", t: "Esquina inferior derecha. Abre el chat que crea y edita la presentaci\u00f3n." },
+    { k: "+ \u203a Seleccionar marca", t: "Aplica el kit de marca de la organizaci\u00f3n, si TI public\u00f3 uno." },
+    { k: "/", t: "Cita un Word, PDF o carpeta de OneDrive o SharePoint como fuente." },
+    { k: "Habilidades \u203a Revisa esta presentaci\u00f3n", t: "Sugiere mejoras de estructura e historia diapositiva por diapositiva, sin cambiar nada." },
+    { k: "Habilidades \u203a Prepararse para preguntas", t: "Anticipa lo que va a preguntar el comit\u00e9 y los puntos d\u00e9biles." },
+    { k: "Habilidades \u203a Visualice esta diapositiva", t: "Propone una forma m\u00e1s visual de mostrar el contenido." },
+    { k: "Vista \u203a Notas", t: "Genera notas del orador para una diapositiva o todas. Tambi\u00e9n se piden en el chat." }
+  ]
+};
+
 const SEC_EXCEL = [
   {
     area: "suscripcion",
@@ -12924,6 +12973,12 @@ function pintarHerramienta2(def) {
   main.appendChild(el('div', 'sec-h', '<div><p class="k">Funciones</p><h2>Qu\u00e9 puede hacer Copilot en ' + esc(def.tab) + '</h2></div><div class="leyenda"><span><i class="dot disponible"></i>Disponible</span><span><i class="dot vista"></i>Vista previa</span><span><i class="dot confirmar"></i>Retirada</span></div>'));
   const g = el('div', 'fgrid'); main.appendChild(g);
   fs.forEach((f, i) => g.appendChild(funcion2(f, def, i)));
+  const cm = COMANDOS2[def.grupo] || [];
+  if (cm.length) {
+    main.appendChild(el('div', 'sec-h', '<div><p class="k">Comandos y atajos</p><h2>Lo que escribes o pulsas en ' + esc(def.tab) + '</h2></div>')).style.marginTop = '24px';
+    main.appendChild(el('div', 'cmds', cm.map(c => '<div class="row"><kbd>' + esc(c.k) + '</kbd><span>' + esc(c.t) + '</span></div>').join('')));
+    main.appendChild(el('p', 'note', 'Algunas etiquetas aparecen en ingl\u00e9s en tu Copilot. Las funciones llegan por etapas, as\u00ed que puede que no veas todas todav\u00eda.'));
+  }
   const ojo = OJO2[def.grupo] || [];
   if (ojo.length) main.appendChild(el('div', 'warnbox', svg('alert', 20) + '<div><span class="k">LO QUE SUELE FALLAR</span><ul>' + ojo.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul></div>'));
   const as = el('aside', 'practica'); as.setAttribute('aria-label', 'Pr\u00e1ctica de tu \u00e1rea'); lay.appendChild(as);

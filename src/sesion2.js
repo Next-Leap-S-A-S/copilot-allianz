@@ -277,3 +277,46 @@ const FUNCIONES2 = [
     fuentes: [{ titulo: "Novedades de Microsoft 365 Copilot, agosto de 2026", url: "https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/what%E2%80%99s-new-in-microsoft-copilot--august-2026/4551960" }]
   }
 ];
+
+const COMANDOS2 = {
+  Outlook: [
+    { k: "Resumen por Copilot", t: "Botón arriba del hilo. Resume la conversación con citas a cada correo." },
+    { k: "Copilot › Borrador", t: "En un correo nuevo o respuesta. Generar, Regenerar y Mantenerlo, con ajuste de tono y longitud." },
+    { k: "Copilot › Entrenamiento", t: "Revisa tono y claridad de lo que escribiste. Pide al menos 100 caracteres." },
+    { k: "Programar con Copilot", t: "Desde un correo crea la reunión con agenda, resumen y asistentes." },
+    { k: "Alt+I", t: "Dentro de la descripción de una reunión nueva, abre Copilot para redactar la agenda." },
+    { k: "Preparar para esta reunión", t: "En el calendario o en el chat. Reúne correos, archivos y chats de esa reunión." },
+    { k: "Botón Copilot", t: "Abre el chat sobre tu buzón y calendario, en panel o página completa." }
+  ],
+  Word: [
+    { k: "Alt+C", t: "Abre Copilot en Windows. En Mac es Cmd+Ctrl+I." },
+    { k: "Editar con Copilot", t: "El modo por defecto. Copilot cambia el documento y al final resume lo que hizo." },
+    { k: "Solo chat", t: "Copilot responde preguntas sin tocar el documento." },
+    { k: "/", t: "Cita un archivo, correo o reunión de OneDrive o SharePoint como fuente del borrador." },
+    { k: "Reescribir", t: "Aparece al seleccionar texto, en la minibarra. En Mac, con clic derecho." },
+    { k: "Revisar › Comparar › Comparar", t: "Función de Word de escritorio. Marca las diferencias y luego Copilot las resume." },
+    { k: "Ctrl+Z", t: "Deshace un cambio que hizo Copilot." }
+  ],
+  Excel: [
+    { k: "Alt+C", t: "Lleva al botón de Copilot. Enter abre el panel." },
+    { k: "F6", t: "Cambia entre el panel de Copilot y la hoja. También Ctrl+F6." },
+    { k: "Shift+Tab", t: "Desde el cuadro de texto llega al selector de modo: edición, Plan o solo chat." },
+    { k: "@clean-data", t: "Limpia espacios, formatos, fechas y duplicados. Tú apruebas cada corrección." },
+    { k: "@chart-design", t: "Recomienda el tipo de gráfico y mejora los existentes. Viene desactivada." },
+    { k: "@theme-design", t: "Aplica una paleta de colores al libro. En despliegue." },
+    { k: "@brand-kit", t: "Aplica la marca de la empresa, si un administrador la configuró." },
+    { k: "@interactive-canvas", t: "Convierte los datos en un tablero interactivo. Vista previa." },
+    { k: "@skill-builder", t: "Guarda un proceso que repites como habilidad reutilizable en tu OneDrive." },
+    { k: "=", t: "En una celda, Copilot sugiere la fórmula completa con vista previa." },
+    { k: "Revisar › Mostrar cambios", t: "Muestra qué celdas editó Copilot. Ctrl+Z deshace." }
+  ],
+  PowerPoint: [
+    { k: "Icono de Copilot", t: "Esquina inferior derecha. Abre el chat que crea y edita la presentación." },
+    { k: "+ › Seleccionar marca", t: "Aplica el kit de marca de la organización, si TI publicó uno." },
+    { k: "/", t: "Cita un Word, PDF o carpeta de OneDrive o SharePoint como fuente." },
+    { k: "Habilidades › Revisa esta presentación", t: "Sugiere mejoras de estructura e historia diapositiva por diapositiva, sin cambiar nada." },
+    { k: "Habilidades › Prepararse para preguntas", t: "Anticipa lo que va a preguntar el comité y los puntos débiles." },
+    { k: "Habilidades › Visualice esta diapositiva", t: "Propone una forma más visual de mostrar el contenido." },
+    { k: "Vista › Notas", t: "Genera notas del orador para una diapositiva o todas. También se piden en el chat." }
+  ]
+};

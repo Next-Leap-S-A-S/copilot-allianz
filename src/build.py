@@ -129,6 +129,10 @@ def main():
     js += "\n\n" + (SRC / "sesion2.js").read_text(encoding="utf-8").strip()
     secs2 = sorted((SRC / "secciones2").glob("*.js"))
     js += "\n\n" + "\n\n".join(f.read_text(encoding="utf-8").strip() for f in secs2)
+    js += "\n\n" + (SRC / "sesion3.js").read_text(encoding="utf-8").strip()
+    js += "\n\n" + (SRC / "retos3.js").read_text(encoding="utf-8").strip()
+    areas3 = sorted((SRC / "areas3").glob("*.js"))
+    js += "\n\n" + "\n\n".join(f.read_text(encoding="utf-8").strip() for f in areas3)
 
     problems, n_rci = check_data(js)
     problems += check_template_prose(tpl)
@@ -147,7 +151,7 @@ def main():
     html = asciify(html)
     assert all(ord(c) < 128 for c in html), "quedaron caracteres no ASCII"
     OUT.write_text(html, encoding="ascii")
-    print(f"ok: {OUT} ({OUT.stat().st_size:,} bytes, {n_rci} prompts largos base, {len(areas)} archivos de area)")
+    print(f"ok: {OUT} ({OUT.stat().st_size:,} bytes, {n_rci} prompts largos base, {len(areas)} archivos de area, {len(areas3)} de la sesion 3)")
 
 
 if __name__ == "__main__":

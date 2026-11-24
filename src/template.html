@@ -384,6 +384,37 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
 .ses .sico{display:flex;justify-content:space-between;align-items:flex-start}
 .ses.off .ico{background:#fff;border-color:var(--line2);color:#A3A3A3}
 @media print{.top,.btn,.icb,.chips,.back,details.mas{display:none!important}body{background:#fff}.reto,.fcard{break-inside:avoid}}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:12px;background:#fff}
+.tbl table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:10px 14px;border-top:1px solid var(--line)}
+.tbl th{background:#F9FAFB;font-weight:600;border-top:0;color:var(--ink2)}
+.tbl td:first-child{font-weight:600;color:var(--ink2)}
+.sem{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.sem>div{border-radius:12px;padding:14px 16px;font-size:14.5px;border:1px solid var(--line)}
+.sem b{display:block;margin-bottom:4px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.sem .v{background:#ECFDF3;border-color:#A6F4C5}.sem .v b{color:#067647}
+.sem .a{background:#FFFAEB;border-color:#FEDF89}.sem .a b{color:#B54708}
+.sem .r{background:#FEF3F2;border-color:#FECDCA}.sem .r b{color:#B42318}
+@media(max-width:700px){.sem{grid-template-columns:1fr}}
+.cards3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin-top:12px}
+.mini{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px}
+.mini h3{margin:0 0 4px;font-size:15px}
+.mini p{margin:0;font-size:14px;color:var(--ink3)}
+.mini .k{font-family:var(--mono);font-size:12px;color:var(--ink4);margin-top:8px}
+.mini .n{font-family:var(--mono);font-size:12px;color:var(--acc);margin-bottom:6px}
+.mx td{padding:6px}
+.mx td:first-child{white-space:nowrap}
+.mx button{width:100%;text-align:left;font:500 13px/1.35 var(--sans);border:1px solid var(--line2);border-radius:8px;background:#fff;color:var(--ink2);padding:8px 10px;cursor:pointer;min-height:40px}
+.mx button:hover{background:var(--acc-bg);border-color:var(--acc-line)}
+.mx button[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);font-weight:600}
+.dyn{margin-top:4px}
+.dyn>.chips{margin-top:0}
+.prb{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px;margin-top:12px}
+.prb .t{display:inline-block;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:4px 10px;background:#F2F4F7;color:var(--ink2)}
+.prb p{margin:8px 0 0;font-size:15px}
+.prb .l{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.sal{margin-top:6px}
+@media print{.top,.btn,.chips,.back,details.mas{display:none!important}body{background:#fff}.reto{break-inside:avoid}}
 </style>
 </head>
 <body>
@@ -568,6 +599,26 @@ textarea{width:100%;min-height:96px;font:400 15px var(--sans);padding:12px 14px;
   </div>
 </main>
 
+<!-- Sesión 3 -->
+<main id="s3" hidden>
+  <div class="wrap">
+    <section class="hero">
+      <button class="btn back" id="volver3" type="button">&larr; Las 4 sesiones</button>
+      <p class="eyebrow acc">Sesión 3 de 4 · 2 horas · Laboratorio</p>
+      <h1 style="margin-top:16px">Tareas programadas y primeros agentes</h1>
+      <p class="lead">Copilot trabaja cuando tú no estás. Dejas tareas que se ejecutan solas y construyes el borrador del primer agente de tu área. Cada herramienta trae ejemplos por área y por tipo de trabajo.</p>
+    </section>
+    <div class="panel on" id="p-s3-ruta"><section class="sec"></section></div>
+    <div class="panel" id="p-s3-tareas"><section class="sec"></section></div>
+    <div class="panel" id="p-s3-retos-t"><section class="sec"></section></div>
+    <div class="panel" id="p-s3-decidir"><section class="sec"></section></div>
+    <div class="panel" id="p-s3-agentes"><section class="sec"></section></div>
+    <div class="panel" id="p-s3-retos-a"><section class="sec"></section></div>
+    <div class="panel" id="p-s3-cierre"><section class="sec"></section></div>
+    <p class="foot">Programa de Copilot para equipos de Allianz · Next Leap. Los datos que uses en los retos se anonimizan siempre y lo que sale de una tarea o de un agente es un borrador que revisa la persona responsable. Las funciones llegan por etapas y los nombres comerciales cambian: confirma con tu área de tecnología qué tienes habilitado.</p>
+  </div>
+</main>
+
 <div class="toast" id="toast" role="status"></div>
 
 <script>
@@ -601,10 +652,10 @@ function fallback(txt, ok) {
 
 /* Vistas */
 function vista(v) {
-  ['gate', 'home', 's1', 's2'].forEach(id => { $('#' + id).hidden = id !== v; });
+  ['gate', 'home', 's1', 's2', 's3'].forEach(id => { $('#' + id).hidden = id !== v; });
   $('#nav').hidden = v === 'gate';
-  $('#navtabs').hidden = v !== 's1' && v !== 's2';
-  if (v === 's1' || v === 's2') pestanas(v === 's1' ? PANELES : PANELES2);
+  $('#navtabs').hidden = v !== 's1' && v !== 's2' && v !== 's3';
+  if (v === 's1' || v === 's2' || v === 's3') pestanas(v === 's1' ? PANELES : (v === 's2' ? PANELES2 : PANELES3));
   window.scrollTo(0, 0);
 }
 function pestanas(lista) {
@@ -620,6 +671,7 @@ function pintarUsuario() {
   $('#homeHola').textContent = 'Hola, ' + st.user.nombre.split(' ')[0];
 }
 function irHome() { pintarUsuario(); pintarSesiones(); vista('home'); location.hash = ''; }
+function irSesion3() { pintarUsuario(); vista('s3'); location.hash = 'sesion-3'; panel3('ruta'); repintar3(); }
 function irSesion1() { pintarUsuario(); SECCIONES.forEach(pintarHerramienta); vista('s1'); location.hash = 'sesion-1'; panel('licencia'); }
 function irSesion2() { pintarUsuario(); SECCIONES2.forEach(pintarHerramienta2); vista('s2'); location.hash = 'sesion-2'; panel('ruta2'); }
 
@@ -651,9 +703,10 @@ function pintarSesiones() {
     if (abierta) n.type = 'button';
     let tag = 'Se abre cuando llegue su día';
     if (abierta && s.n === 1) { const p = progreso(); tag = (p.hechos === p.total ? 'Los 6 retos completos' : (p.hechos ? 'Seguir · ' + p.hechos + ' de ' + p.total + ' retos' : 'Entrar a la sesión')) + ' &rarr;'; }
+    else if (abierta && s.n === 3) { const p = progreso3(); tag = (p.hechos === p.total ? 'Los ' + p.total + ' retos completos' : (p.hechos ? 'Seguir · ' + p.hechos + ' de ' + p.total + ' retos' : 'Entrar a la sesión')) + ' &rarr;'; }
     else if (abierta) tag = 'Entrar a la sesión &rarr;';
     n.innerHTML = '<span class="sico"><span class="ico' + (abierta ? '' : ' mute') + '">' + svg(abierta ? ICON_SES[s.n] : 'lock', 20) + '</span><span class="num">/' + s.n + '</span></span><h3>' + esc(s.titulo) + '</h3><p>' + esc(s.detalle) + '</p><span class="tag">' + tag + '</span>';
-    if (abierta) n.addEventListener('click', s.n === 1 ? irSesion1 : irSesion2);
+    if (abierta) n.addEventListener('click', s.n === 1 ? irSesion1 : (s.n === 2 ? irSesion2 : irSesion3));
     box.appendChild(n);
   });
 }
@@ -832,6 +885,280 @@ function pintarSeccion(def) {
   cont.appendChild(big);
 }
 
+/* Sesión 3 */
+function s3(id) { try { return eval('S3_' + id.toUpperCase()); } catch (e) { return null; } }
+function tabla(cols, filas, extra) {
+  return '<div class="tbl"><table' + (extra ? ' class="' + extra + '"' : '') + '><thead><tr>' + cols.map(c => '<th>' + esc(c) + '</th>').join('') + '</tr></thead><tbody>' + filas.map(f => '<tr>' + f.map(c => '<td>' + esc(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+}
+function refsHtml(l) {
+  return '<div class="refs">' + l.map(f => '<a href="' + esc(f.url) + '" target="_blank" rel="noopener"><span>' + esc(f.titulo) + '</span><span>' + esc(f.fuente) + ' &#8599;</span></a>').join('') + '</div>';
+}
+function semHtml(l) {
+  const K = { Verde: 'v', Amarillo: 'a', Rojo: 'r' };
+  return '<div class="sem">' + l.map(x => '<div class="' + K[x.c] + '"><b>' + esc(x.c) + '</b>' + esc(x.x) + '</div>').join('') + '</div>';
+}
+function pasosHtml(l) {
+  return '<div class="pasos">' + l.map(p => '<div class="paso"><span class="n">' + esc(p.n) + '</span><div><p>' + esc(p.texto) + '</p>' + (p.donde ? '<span class="d">' + esc(p.donde) + '</span>' : '') + '</div></div>').join('') + '</div>';
+}
+function subTitulo(t, min) { return '<div class="sub"><h2>' + esc(t) + '</h2>' + (min ? '<span class="min">' + esc(min) + '</span>' : '') + '</div>'; }
+function pcardsDe(cont, txt) {
+  partesPrompt(txt).forEach(b => {
+    const c = el('div', 'pcard c-' + b.k + (b.i > 2 ? ' w' : ''), '<div class="ph"><span>' + esc(b.t) + '</span><button class="btn" type="button" aria-label="Copiar bloque ' + esc(b.t) + '">Copiar</button></div><pre>' + esc(b.c) + '</pre>');
+    c.querySelector('button').addEventListener('click', () => copiar(b.t === 'Prompt' ? b.c : b.t.toUpperCase() + '\n' + b.c));
+    cont.appendChild(c);
+  });
+}
+function filasCopiar(cont, items) {
+  items.forEach(x => {
+    const r = el('div', 's', '<span>' + esc(x) + '</span><button class="btn" type="button">Copiar</button>');
+    r.querySelector('button').addEventListener('click', () => copiar(x));
+    cont.appendChild(r);
+  });
+}
+
+/* Avance de la sesión 3 */
+function retoHecho3(r) { return [0, 1, 2].every(i => st.marcas['s3-v-' + r.n + '-' + i]); }
+function progreso3() { return { hechos: RETOS3.filter(retoHecho3).length, total: RETOS3.length }; }
+
+/* Selectores de área y de tipo */
+function areaActual() { return area(st.areaVista || (st.user && st.user.area)); }
+function repintar3() {
+  ['2', '3', '4'].forEach(pintarDyn3);
+  pintarMatrices3();
+  SECCIONES.forEach(d => { if ($('#sec-' + d.id)) pintarSeccion(d); });
+}
+function chipsArea() {
+  const a = areaActual();
+  const row = el('div', 'chips'); row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'Cambiar de área');
+  AREAS.forEach(x => {
+    const b = el('button', '', '<i style="background:' + x.color + '"></i>' + esc(x.nombre));
+    b.type = 'button'; b.setAttribute('aria-pressed', x.id === a.id ? 'true' : 'false');
+    b.addEventListener('click', () => { st.areaVista = x.id; save(); repintar3(); });
+    row.appendChild(b);
+  });
+  return row;
+}
+function chipsTipo(lista, clave) {
+  const row = el('div', 'chips'); row.setAttribute('role', 'group'); row.setAttribute('aria-label', 'Elegir el tipo');
+  const actual = st[clave] || lista[0].id;
+  lista.forEach(t => {
+    const b = el('button', '', esc(t.nombre));
+    b.type = 'button'; b.setAttribute('aria-pressed', t.id === actual ? 'true' : 'false');
+    b.addEventListener('click', () => { st[clave] = t.id; save(); repintar3(); });
+    row.appendChild(b);
+  });
+  return row;
+}
+
+/* Ejemplos por área y tipo */
+function ejemploTarea(a, tipo, e) {
+  const big = el('div', 'bigp');
+  big.innerHTML = '<div class="bh"><div><h4>' + esc(e.titulo) + '</h4><small>' + esc(a.nombre) + ' · ' + esc(tipo.nombre) + ' · ' + esc(e.cuando) + ' · ' + nPal(e.prompt) + ' palabras</small></div><button class="btn solid cp" type="button">Copiar prompt</button></div>' +
+    '<div class="bb"><p style="margin:0;color:var(--ink3);font-size:15px"><b>Qué recibes:</b> ' + esc(e.resumen) + ' <b>Fuente:</b> ' + esc(e.fuente) + '.</p>' +
+    '<p class="lab">Así se ve el resultado en tus Chats</p><div class="sal"></div>' +
+    '<p class="lab">El prompt, por bloques</p><div class="pcards"></div>' +
+    '<p class="lab">Prueba una variación, una sola</p><div class="seg2"></div>' +
+    '<p class="lab">Antes de usar la respuesta, verifica</p><ul class="chk vf"></ul></div>';
+  big.querySelector('.cp').addEventListener('click', () => copiar(e.prompt));
+  big.querySelector('.sal').innerHTML = ventana({ etiqueta: 'LO QUE LLEGA A TUS CHATS', color: '#C14C78', titulo: 'Copilot · Chats', filas: [{ isCop: true, b: e.titulo + '\n' + e.salida.join('\n') }] });
+  pcardsDe(big.querySelector('.pcards'), e.prompt);
+  filasCopiar(big.querySelector('.seg2'), e.variaciones);
+  checks(big.querySelector('.vf'), e.verificar, 's3t-' + a.id + '-' + tipo.id + '-');
+  return big;
+}
+function ejemploAgente(a, tipo, e) {
+  const big = el('div', 'bigp');
+  big.innerHTML = '<div class="bh"><div><h4>' + esc(e.nombre) + '</h4><small>' + esc(a.nombre) + ' · ' + esc(tipo.nombre) + ' · ' + nPal(e.instrucciones) + ' palabras de instrucciones</small></div><button class="btn solid cp" type="button">Copiar instrucciones</button></div>' +
+    '<div class="bb"><p class="lab" style="margin-top:0">Nombre y descripción</p><div class="seg2 nd"></div>' +
+    '<p class="lab">Qué cargar como conocimiento</p><p style="margin:0;color:var(--ink2);font-size:15px">' + esc(e.conocimiento) + '</p>' +
+    '<p class="lab">Instrucciones, por bloques</p><div class="pcards"></div>' +
+    '<p class="lab">Sugerencias de arranque</p><div class="seg2 sg"></div>' +
+    '<p class="lab">Antes de compartirlo, verifica</p><ul class="chk vf"></ul></div>';
+  big.querySelector('.cp').addEventListener('click', () => copiar(e.instrucciones));
+  filasCopiar(big.querySelector('.nd'), [e.nombre, e.descripcion]);
+  pcardsDe(big.querySelector('.pcards'), e.instrucciones);
+  filasCopiar(big.querySelector('.sg'), e.sugerencias.map(s => s.nombre + ': ' + s.texto));
+  checks(big.querySelector('.vf'), e.verificar, 's3a-' + a.id + '-' + tipo.id + '-');
+  return big;
+}
+function pruebasAgente(a, tipo, e) {
+  const box = el('div', '');
+  box.appendChild(el('p', 'lab', 'Las 3 pruebas de ' + esc(e.nombre)));
+  e.pruebas.forEach((p, i) => {
+    const d = el('div', 'prb', '<div class="l"><span class="t">' + esc(p.tipo) + '</span><button class="btn" type="button">Copiar pregunta</button></div><p><b>' + esc(p.pregunta) + '</b></p><p style="color:var(--ink3);font-size:14px"><b>Debe pasar esto:</b> ' + esc(p.esperado) + '</p><ul class="chk"></ul>');
+    d.querySelector('button').addEventListener('click', () => copiar(p.pregunta));
+    checks(d.querySelector('.chk'), ['Mi agente respondió como se espera'], 's3p-' + a.id + '-' + tipo.id + '-' + i + '-');
+    box.appendChild(d);
+  });
+  return box;
+}
+function pintarDyn3(n) {
+  const box = $('#dyn3-' + n); if (!box) return;
+  box.innerHTML = '';
+  const r = RETOS3.find(x => x.n === n);
+  const esAg = r.elige !== 'tareas';
+  const lista = esAg ? TIPOS_AGENTE : TIPOS_TAREA;
+  const clave = esAg ? 'tipoA' : 'tipoT';
+  const a = areaActual();
+  box.appendChild(el('p', 'lab', 'Elige tu área'));
+  box.appendChild(chipsArea());
+  box.appendChild(el('p', 'lab', esAg ? 'Elige el tipo de agente' : 'Elige el tipo de tarea'));
+  box.appendChild(chipsTipo(lista, clave));
+  const tipo = lista.find(t => t.id === (st[clave] || lista[0].id)) || lista[0];
+  box.appendChild(el('p', 'note', esc(tipo.nombre) + ': ' + esc(tipo.que) + (esAg ? ' Fuente: ' + esc(tipo.fuente) + '.' : ' Frecuencia habitual: ' + esc(tipo.cuando.toLowerCase()) + '. Para variar: ' + esc(tipo.variar.charAt(0).toLowerCase() + tipo.variar.slice(1)))));
+  const datos = s3(a.id);
+  const e = datos && (esAg ? datos.agentes : datos.tareas).find(x => x.tipo === tipo.id);
+  if (!e) { box.appendChild(el('p', 'note', 'Este contenido se está preparando.')); return; }
+  box.appendChild(r.elige === 'tareas' ? ejemploTarea(a, tipo, e) : (r.elige === 'agentes' ? ejemploAgente(a, tipo, e) : pruebasAgente(a, tipo, e)));
+}
+
+/* Matrices de ideas: área por tipo */
+function matriz(kind) {
+  const esAg = kind === 'agentes';
+  const lista = esAg ? TIPOS_AGENTE : TIPOS_TAREA;
+  const clave = esAg ? 'tipoA' : 'tipoT';
+  const act = areaActual();
+  const wrap = el('div', 'tbl');
+  const t = el('table', 'mx');
+  t.innerHTML = '<thead><tr><th>Área</th>' + lista.map(x => '<th>' + esc(x.nombre) + '</th>').join('') + '</tr></thead>';
+  const tb = el('tbody');
+  AREAS.forEach(a => {
+    const datos = s3(a.id);
+    const tr = el('tr', '', '<td><i style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:' + a.color + '"></i>' + esc(a.nombre) + '</td>');
+    lista.forEach(tp => {
+      const e = datos && (esAg ? datos.agentes : datos.tareas).find(x => x.tipo === tp.id);
+      const td = el('td');
+      if (e) {
+        const b = el('button', '', esc(esAg ? e.nombre : e.titulo)); b.type = 'button';
+        b.setAttribute('aria-pressed', a.id === act.id && (st[clave] || lista[0].id) === tp.id ? 'true' : 'false');
+        b.addEventListener('click', () => { st.areaVista = a.id; st[clave] = tp.id; save(); repintar3(); panel3(esAg ? 'retos-a' : 'retos-t'); const t2 = $('#reto3-' + (esAg ? '3' : '2')); if (t2) t2.scrollIntoView(); });
+        td.appendChild(b);
+      } else td.textContent = '·';
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb); wrap.appendChild(t);
+  return wrap;
+}
+function pintarMatrices3() {
+  [['#mx-t', 'tareas'], ['#mx-a', 'agentes']].forEach(p => { const c = $(p[0]); if (c) { c.innerHTML = ''; c.appendChild(matriz(p[1])); } });
+}
+
+/* Retos de la sesión 3 */
+function pintarReto3(r) {
+  const a = el('article', 'reto'); a.id = 'reto3-' + r.n;
+  const ej = r.ej ? '<div class="ejemplo"><p class="eyebrow">Ejemplo con el siniestro 0417</p><div class="vent-row">' + r.ej.ventanas.map(ventana).join('') + '</div><div class="ej-pie"><p>Ilustración con datos ficticios. Tu pantalla puede verse distinta según la versión y lo que tu administrador haya habilitado.</p></div></div>' : '';
+  a.innerHTML =
+    '<header><div style="flex:1 1 520px"><p class="eyebrow acc">Reto ' + r.n + ' · ' + esc(r.bloque) + '</p><h3>' + esc(r.titulo) + '</h3></div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip">' + esc(r.herr) + '</span><span class="chip t">' + r.min + ' min</span></div></header>' + ej +
+    '<div class="cols"><div class="col1">' +
+      '<div><p class="eyebrow">Objetivo</p><p style="margin-top:6px">' + esc(r.objetivo) + '</p></div>' +
+      '<div><p class="eyebrow">Entras con</p><p style="margin-top:6px;color:var(--ink2)">' + esc(r.entra) + '</p></div>' +
+      '<div class="sales"><p class="eyebrow">Sales con</p><p>' + esc(r.sales) + '</p></div>' +
+      '<div><p class="eyebrow">Validas</p><ul class="chk" data-v="' + r.n + '"></ul></div>' +
+    '</div><div class="col2">' +
+      '<div><p class="eyebrow">Haces</p>' + pasosHtml(r.pasos) + '</div>' +
+      (r.prompt ? '<div class="pbox"><div class="h"><p class="eyebrow">Prompt de arranque</p><button type="button" class="btn cp">Copiar</button></div><pre>' + esc(r.prompt) + '</pre>' + (r.nota ? '<small>' + esc(r.nota) + '</small>' : '') + '</div>' : '') +
+      (r.elige ? '<div class="dyn" id="dyn3-' + r.n + '"></div>' : '') +
+      '<div class="falla"><p class="eyebrow">Si no te funciona</p><p>' + esc(r.siFalla) + '</p></div>' +
+    '</div></div>';
+  const cp = a.querySelector('.cp'); if (cp && r.prompt) cp.addEventListener('click', () => copiar(r.prompt));
+  checks(a.querySelector('[data-v]'), r.valida, 's3-v-' + r.n + '-');
+  return a;
+}
+
+/* Paneles */
+function panel3(id) { panel('s3-' + id); }
+function sec3(id) { return $('#p-s3-' + id + ' .sec'); }
+function pintarSesion3() {
+
+  /* Ruta */
+  let c = sec3('ruta');
+  c.innerHTML = '<div class="aviso"><div><h2>' + esc(LICENCIA3.titulo) + '</h2><p>' + esc(LICENCIA3.texto) + '</p></div><button class="btn big" type="button" id="irLic">Ver la licencia en la sesión 1</button></div>' +
+    '<p class="note">' + esc(LICENCIA3.nota) + '</p>' +
+    '<div class="card" style="margin-top:24px"><p class="eyebrow">Cómo se trabaja hoy</p><div class="como">' +
+      '<div><b>01 · VES</b><p>Un ejemplo resuelto de tu área, con el resultado que debes esperar.</p></div>' +
+      '<div><b>02 · HACES</b><p>Copias el prompt, lo ejecutas una vez y lo programas o lo cargas en Agent Builder.</p></div>' +
+      '<div><b>03 · VARÍAS</b><p>Cambias una sola cosa (fuente, frecuencia o formato) y comparas.</p></div>' +
+      '<div><b>04 · VALIDAS</b><p>Compruebas contra la fuente real antes de usar lo que Copilot entregó.</p></div>' +
+    '</div><p class="note">Los retos tienen la misma forma que en la sesión 1, con un paso nuevo: variar. El caso sigue siendo el siniestro 0417.</p></div>' +
+    '<div style="margin-top:32px"><h2>La ruta de 120 minutos</h2><p class="note" style="margin-top:6px;font-size:15px">Cada segmento es un paso. El ancho es proporcional al tiempo. Azul: tareas programadas. Rosa: cuadernos y agentes.</p><div class="ruta" id="ruta3"></div></div>';
+  const rs = $('#ruta3', c);
+  RUTA3.forEach(s => rs.appendChild(el('div', 'seg', '<span class="a">' + s.n + '</span><span class="b">' + esc(s.titulo) + '</span><span class="c">' + s.min + ' min</span>')));
+  rs.querySelectorAll('.seg').forEach((d, i) => { d.style.flex = RUTA3[i].min + ' 1 0'; d.style.background = RUTA3[i].bg; d.style.color = RUTA3[i].fg; });
+  $('#irLic', c).addEventListener('click', () => { irSesion1(); panel('licencia'); });
+
+  /* Tareas */
+  c = sec3('tareas');
+  c.innerHTML = '<p class="eyebrow acc">/tareas · 10 min</p><h2 style="margin-top:8px">Una tarea programada es un prompt con horario</h2><p class="lead">' + esc(TAREAS_INFO.intro) + '</p>' +
+    '<div class="cards3">' + TAREAS_INFO.que.map(x => '<div class="mini"><h3>' + esc(x.t) + '</h3><p>' + esc(x.x) + '</p></div>').join('') + '</div>' +
+    subTitulo('Los 5 filtros de una buena tarea') +
+    '<div class="cards3">' + TAREAS_INFO.filtros.map((x, i) => '<div class="mini"><p class="n">' + (i + 1) + '</p><h3>' + esc(x.t) + '</h3><p>' + esc(x.x) + '</p></div>').join('') + '</div>' +
+    subTitulo('Semáforo de datos para tareas que corren solas') + semHtml(TAREAS_INFO.semaforo) +
+    '<div class="card" style="margin-top:16px"><p class="eyebrow">Qué no hace una tarea programada</p><p style="margin:8px 0 0;color:var(--ink2)">' + esc(TAREAS_INFO.noHace) + '</p></div>' +
+    subTitulo('Qué puedes programar: cinco tipos de tarea', 'Elige una celda para ir a su reto') +
+    '<div class="cards3">' + TIPOS_TAREA.map(t => '<div class="mini"><h3>' + esc(t.nombre) + '</h3><p>' + esc(t.que) + '</p><p class="k">' + esc(t.cuando) + '</p></div>').join('') + '</div>' +
+    '<div id="mx-t" style="margin-top:8px"></div>' +
+    subTitulo('Referencias') + refsHtml(TAREAS_INFO.refs);
+
+  /* Retos de tareas */
+  c = sec3('retos-t');
+  c.innerHTML = '<p class="eyebrow acc">Retos 0 a 2 · 40 min</p><h2 style="margin-top:8px">Tres retos para dejar tareas corriendo</h2><p class="lead">El Reto 0 verifica tu cuenta. El Reto 1 es la tarea que sirve a todas las áreas. El Reto 2 es la de tu área, con cinco tipos para elegir.</p><div class="retos" id="retos3t"></div>';
+  RETOS3.filter(r => r.panel === 'retos-t').forEach(r => $('#retos3t', c).appendChild(pintarReto3(r)));
+
+  /* Decidir */
+  c = sec3('decidir');
+  c.innerHTML = '<p class="eyebrow acc">/decidir · 10 min</p><h2 style="margin-top:8px">¿Tarea, cuaderno o agente?</h2><p class="lead">' + esc(DECIDIR.intro) + '</p>' +
+    tabla([''].concat(DECIDIR.cols), DECIDIR.filas.map(f => [f.f].concat(f.v))) +
+    subTitulo('La regla de decisión') +
+    '<div class="cards3">' + DECIDIR.reglas.map((x, i) => '<div class="mini"><p class="n">' + (i + 1) + '</p><p style="color:var(--ink2)">' + esc(x) + '</p></div>').join('') + '</div>' +
+    subTitulo('Ejemplo paso a paso: un cuaderno del caso 0417') + pasosHtml(DECIDIR.cuaderno) +
+    '<div class="card" style="margin-top:20px"><p class="eyebrow">Tu mini ejercicio</p><p style="margin:8px 0 0;color:var(--ink2)">' + esc(DECIDIR.ejercicio) + '</p></div>' +
+    subTitulo('Referencias') + refsHtml(DECIDIR.refs);
+
+  /* Agentes */
+  const AI = AGENTES_INFO;
+  c = sec3('agentes');
+  c.innerHTML = '<p class="eyebrow acc">/agentes · 15 min</p><h2 style="margin-top:8px">Agentes: qué son y cómo se construyen en Copilot</h2><p class="lead">' + esc(AI.intro) + '</p>' +
+    '<div class="cards3">' + AI.piezas.map(x => '<div class="mini"><h3>' + esc(x.t) + '</h3><p>' + esc(x.x) + '</p></div>').join('') + '</div>' +
+    subTitulo('Chat normal frente a agente') + tabla(['', 'Chat normal con Copilot', 'Agente'], AI.vs.map(f => [f.f, f.chat, f.agente])) +
+    subTitulo('Los ingredientes, campo por campo', 'Pestaña Configure de Agent Builder') + tabla(['Campo', 'Límite', 'Qué es', 'Ejemplo'], AI.campos.map(f => [f.c, f.l, f.x, f.ej])) +
+    subTitulo('Qué puedes cargar como conocimiento') + '<p class="note" style="margin-top:6px;font-size:15px">' + esc(AI.fuentesNota) + '</p>' +
+    tabla(['Fuente', 'Qué puedes cargar y su límite', 'Ten en cuenta'], AI.fuentes.map(f => [f.fuente, f.carga, f.ojo])) +
+    '<div class="card" style="margin-top:16px"><p class="eyebrow">Cómo elegir</p><p style="margin:8px 0 0;color:var(--ink2)">' + esc(AI.fuentesRegla) + '</p></div>' +
+    '<p class="lab">Por qué tu licencia importa</p>' + tabla(AI.licFuentes.cols, AI.licFuentes.filas) +
+    subTitulo('Habilidades (skills)') + '<p class="note" style="margin-top:6px;font-size:15px">' + esc(AI.skills.intro) + '</p>' + tabla(AI.skills.cols, AI.skills.filas) +
+    '<div class="pbox" style="margin-top:16px"><div class="h"><p class="eyebrow">SKILL.md · ejemplo para siniestros</p><button type="button" class="btn" id="cpSkill">Copiar</button></div><pre>' + esc(AI.skills.ejemplo) + '</pre><small>' + esc(AI.skills.nota) + '</small></div>' +
+    '<p class="lab">Cómo agregarla</p>' + pasosHtml(AI.skills.pasos) + '<p class="note">' + esc(AI.skills.limites) + '</p>' +
+    subTitulo('Agent Builder: describir o configurar a mano') + tabla(AI.builder.cols, AI.builder.filas) +
+    '<div class="card" style="margin-top:16px"><p style="margin:0;color:var(--ink2)">' + esc(AI.builder.ruta) + '</p></div>' +
+    '<div class="card" style="margin-top:12px"><p class="eyebrow">Cuando Agent Builder se queda corto: Copilot Studio</p><p style="margin:8px 0 0;color:var(--ink2)">' + esc(AI.builder.studio) + '</p></div>' +
+    subTitulo('Datos y límites') + semHtml(AI.semaforo) +
+    '<div class="card" style="margin-top:16px"><p class="eyebrow">Lo que Agent Builder no hace</p><p style="margin:8px 0 0;color:var(--ink2)">' + esc(AI.noHace) + '</p></div>' +
+    subTitulo('Qué puedes construir: cinco tipos de agente', 'Elige una celda para ir a su reto') +
+    '<div class="cards3">' + TIPOS_AGENTE.map(t => '<div class="mini"><h3>' + esc(t.nombre) + '</h3><p>' + esc(t.que) + '</p><p class="k">' + esc(t.fuente) + '</p></div>').join('') + '</div>' +
+    '<div id="mx-a" style="margin-top:8px"></div>' +
+    subTitulo('Referencias') + refsHtml(AI.refs);
+  $('#cpSkill', c).addEventListener('click', () => copiar(AI.skills.ejemplo));
+
+  /* Retos de agentes */
+  c = sec3('retos-a');
+  c.innerHTML = '<p class="eyebrow acc">Retos 3 y 4 · 37 min</p><h2 style="margin-top:8px">Dos retos para construir y probar tu agente</h2><p class="lead">El Reto 3 deja el borrador listo. El Reto 4 lo prueba con tres preguntas. Antes, lee la pestaña Agentes.</p><div class="retos" id="retos3a"></div>';
+  RETOS3.filter(r => r.panel === 'retos-a').forEach(r => $('#retos3a', c).appendChild(pintarReto3(r)));
+
+  /* Cierre */
+  c = sec3('cierre');
+  c.innerHTML = '<p class="eyebrow acc">/cierre · 8 min</p><h2 style="margin-top:8px">' + esc(CIERRE3.titulo) + '</h2><p class="lead">Antes de cerrar, anota qué tarea dejaste activa y a qué hora te llegará.</p>' +
+    '<div class="grid2"><div class="card"><h3>Mañana, antes de actuar</h3><ul style="margin:10px 0 0;padding-left:18px;color:var(--ink2);font-size:15px">' + CIERRE3.antes.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul></div>' +
+    '<div class="card"><h3>Gestionar y apagar</h3><p style="margin:10px 0 0;color:var(--ink2);font-size:15px">' + esc(CIERRE3.gestionar) + '</p></div></div>' +
+    '<div class="cierre"><div><p class="eyebrow">Regla de oro</p><h2>' + esc(CIERRE3.oro) + '</h2></div><div><p><b>Qué sigue: sesión 4</b>' + esc(CIERRE3.sigue) + '</p></div></div>' +
+    '<p class="note">' + esc(CIERRE3.viene) + '</p>';
+
+  RETOS3.forEach(r => { if (r.elige) pintarDyn3(r.n); });
+  pintarMatrices3();
+  $('#volver3').addEventListener('click', irHome);
+}
+
 /* Sesión 1 */
 const PANELES = [['licencia', 'Licencia'], ['retos', 'Retos'], ['prompting', 'Prompting'], ['teams-chats', 'Chats'], ['teams-reunion', 'Reunión'], ['facilitator', 'Facilitator'], ['planner', 'Planner'], ['onenote', 'OneNote']];
 function panel(id) {
@@ -904,7 +1231,7 @@ const ICON = {
   video: '<path d="m16 13 5.2 3.5a.5.5 0 0 0 .8-.4V7.9a.5.5 0 0 0-.8-.4L16 11"></path><rect x="2" y="6" width="14" height="12" rx="2"></rect>'
 };
 function svg(n, s, w) { return '<svg width="' + (s || 18) + '" height="' + (s || 18) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.5) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICON[n] || ICON.sparkles) + '</svg>'; }
-const ICON_TAB = { licencia: 'key', retos: 'target', prompting: 'sparkles', 'teams-chats': 'msg', 'teams-reunion': 'video', facilitator: 'users', planner: 'tasks', onenote: 'notebook', ruta2: 'map', outlook: 'mail', word: 'file', excel: 'sheet', powerpoint: 'slides' };
+const ICON_TAB = { 's3-ruta': 'map', 's3-tareas': 'calendar', 's3-retos-t': 'target', 's3-decidir': 'shuffle', 's3-agentes': 'bot', 's3-retos-a': 'target', 's3-cierre': 'check', licencia: 'key', retos: 'target', prompting: 'sparkles', 'teams-chats': 'msg', 'teams-reunion': 'video', facilitator: 'users', planner: 'tasks', onenote: 'notebook', ruta2: 'map', outlook: 'mail', word: 'file', excel: 'sheet', powerpoint: 'slides' };
 const ICON_SES = { 1: 'msg', 2: 'layers', 3: 'bot', 4: 'badge' };
 
 /* Sesión 2 */
@@ -999,7 +1326,8 @@ $('#salir').addEventListener('click', () => { st.user = null; save(); location.h
 iniciarGate();
 iniciarSesion1();
 iniciarSesion2();
-if (st.user) { pintarUsuario(); (location.hash === '#sesion-1') ? irSesion1() : (location.hash === '#sesion-2') ? irSesion2() : irHome(); }
+pintarSesion3();
+if (st.user) { pintarUsuario(); (location.hash === '#sesion-1') ? irSesion1() : (location.hash === '#sesion-2') ? irSesion2() : (location.hash === '#sesion-3') ? irSesion3() : irHome(); }
 else vista('gate');
 </script>
 </body>
